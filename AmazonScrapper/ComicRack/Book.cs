@@ -29,6 +29,14 @@ namespace AmazonScrapper.ComicRack
             bookType.SetPropertyValue(this.book, property, value);
         }
 
+        public void AppendValue(string property, object value, bool NewLine = false) 
+        {
+            string existingValue = Get<string>(property);
+            string newLine = NewLine && !string.IsNullOrEmpty(existingValue) ? Environment.NewLine : string.Empty;
+            object newValue = value is string ? $"{existingValue}{newLine}{(string)value}" : value;
+            bookType.SetPropertyValue(this.book, property, newValue);
+        }
+
         public string Series => Get<string>("Series");
         public string ShadowSeries => Get<string>("ShadowSeries");
 
