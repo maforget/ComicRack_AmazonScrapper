@@ -258,10 +258,13 @@
 			PostBuildMacros;
 		</PostBuildEventDependsOn>
     <PostBuildEvent>if $(ConfigurationName) == Release (
-powershell Compress-Archive -Path '$(TargetPath)', '$(TargetDir)*.dll', '$(TargetDir)*.png', '$(SolutionDir)Python\*.ini', '$(SolutionDir)Python\*.py' -DestinationPath '%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).zip' -Force
+REM powershell Compress-Archive -Path '$(TargetPath)', '$(TargetDir)*.dll', '$(TargetDir)*.png', '$(SolutionDir)Python\*.ini', '$(SolutionDir)Python\*.py' -DestinationPath '%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).zip' -Force
+powershell Compress-Archive -Path '$(TargetPath)', '$(TargetDir)*.dll', '$(TargetDir)*.png', '$(SolutionDir)Python\*.ini', '$(SolutionDir)Python\*.py' -DestinationPath '%25UserProfile%25\Desktop\$(TargetName).zip' -Force
 
-if exist "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).crplugin" (del "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).crplugin")
-ren "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).zip" $(TargetName)_v@(VersionNumber).crplugin
+REM if exist "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).crplugin" (del "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).crplugin")
+if exist "%25UserProfile%25\Desktop\$(TargetName).crplugin" (del "%25UserProfile%25\Desktop\$(TargetName).crplugin")
+REM ren "%25UserProfile%25\Desktop\$(TargetName)_v@(VersionNumber).zip" $(TargetName)_v@(VersionNumber).crplugin
+ren "%25UserProfile%25\Desktop\$(TargetName).zip" $(TargetName).crplugin
 )
 
 if $(ConfigurationName) == DEV (
