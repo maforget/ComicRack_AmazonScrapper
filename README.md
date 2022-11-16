@@ -17,7 +17,9 @@ The interface is reminiscent of the ComicVine Scrapper, so you should be able to
 
 Normally ComicRack plugins uses IronPython (a mixture of Python & .NET Framework). This is now obsolete and very hard to develop & debug for, so this plugin is completely done in the .NET Framework. The only python code is to call the .NET Code (1 line). So technically you could use the included executable directly, it will work on its own, but you will only be able to search and not add any metadata to any books.
 
-
+![Default](https://user-images.githubusercontent.com/11904426/202107174-f6a18354-d64b-467f-a8ad-3044da81f4b9.png)
+![Grouped](https://user-images.githubusercontent.com/11904426/202107181-69b81780-8123-490b-a2f2-64bcb1764314.png)
+![Issues](https://user-images.githubusercontent.com/11904426/202107185-9454e3e5-efde-452b-884b-d715283f0958.png)
 
 
 ----
