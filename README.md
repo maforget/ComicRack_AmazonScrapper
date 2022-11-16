@@ -4,7 +4,7 @@
 <br/>
 [Download](https://github.com/maforget/ComicRack_AmazonScrapper/releases/latest/download//AmazonScrapper.crplugin)
 
-#### This plugin uses the Amazon (formally Comixlogy) search to scrape data from Amzon pages and adds them to the metadata in ComicRack.
+#### This plugin uses the Amazon (formally Comixlogy) search to scrape data from Amazon pages and adds them to the metadata in ComicRack.
 
 This isn't meant to be use as a replacement for the [ComicVine Scrapper](https://github.com/cbanack/comic-vine-scraper), which is miles ahead of this. First the data on Amazon isn't as detailed and this doesn't use any API, it just scrapes the pages. Its main use is primally to get some info for those releases that aren't yet available on ComicVine. Also, heavy use of this tool could probably mean that Amazon will block you or ask for if you aren't a robot, so use with moderation. To prevent blocking (I had it happen only once in developing this), the program will use a random user agent. So use it on a couple of books, not your library of thousands. 
 
