@@ -144,8 +144,10 @@ namespace AmazonScrapper.Settings
             {
                 var userParamAttribute = pi.GetCustomAttribute<UserParamAttribute>();
                 var displayText = userParamAttribute == null ? pi.Name : userParamAttribute.DisplayText;
+                var append = userParamAttribute == null ? null : userParamAttribute.Append;
+
                 if (pi.PropertyType == typeof(bool))
-                    keys.Add(pi.Name, new UserConfig(pi.Name, displayText, (bool)pi.GetValue(user)));
+                    keys.Add(pi.Name, new UserConfig(pi.Name, displayText, (bool)pi.GetValue(user), append));
             }
 
             return keys;

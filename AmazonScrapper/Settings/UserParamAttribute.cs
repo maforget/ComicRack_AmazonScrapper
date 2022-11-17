@@ -10,10 +10,12 @@ namespace AmazonScrapper.Settings
     sealed class UserParamAttribute : Attribute
     {
         public string DisplayText { get; }
+        public AppendConfig Append { get; }
 
-        public UserParamAttribute(string displayText)
+        public UserParamAttribute(string displayText, bool append = false, bool newLine = false)
         {
             this.DisplayText = displayText;
+            this.Append = new AppendConfig(append, newLine);
         }
     }
 }

@@ -11,12 +11,14 @@ namespace AmazonScrapper.Settings
         public string Key { get; set; }
         public string Text { get; set; }
         public bool Enabled { get; set; } = true;
+        public AppendConfig Append { get; set; }
 
-        public UserConfig(string key, string text, bool enabled)
+        public UserConfig(string key, string text, bool enabled, AppendConfig append = null)
         {
             Key = key;
             Text = text;
             Enabled = enabled;
+            Append = append ?? new AppendConfig(false, false);
         }
     }
 }
