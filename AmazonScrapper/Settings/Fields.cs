@@ -20,6 +20,7 @@ namespace AmazonScrapper.Settings
         public bool Summary { get; set; } = true;
 
         [IniParam(Default = true)]
+        [UserParam("Notes", true, true)]
         public bool Notes { get; set; } = true;
 
         [IniParam(Default = true)]
