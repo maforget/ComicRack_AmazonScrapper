@@ -32,7 +32,7 @@ namespace AmazonScrapper.ComicRack
         public void AppendValue(string property, object value, bool NewLine = false) 
         {
             string existingValue = Get<string>(property);
-            string newLine = NewLine && !string.IsNullOrEmpty(existingValue) ? Environment.NewLine : string.Empty;
+            string newLine = NewLine && !string.IsNullOrEmpty(existingValue) ? Environment.NewLine + Environment.NewLine : string.Empty;
             object newValue = value is string ? $"{existingValue}{newLine}{(string)value}" : value;
             bookType.SetPropertyValue(this.book, property, newValue);
         }
