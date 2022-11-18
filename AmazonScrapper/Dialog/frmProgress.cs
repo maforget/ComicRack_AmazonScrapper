@@ -44,7 +44,7 @@ namespace AmazonScrapper.Dialog
                 Token.ThrowIfCancellationRequested();
 
             pbCover.SafeInvoke(x => x.Image = image);
-            lblText.SafeInvoke(x => x.Text = $"{serie} #{number}");
+            lblText.SafeInvoke(x => x.Text = $"{serie}{(number == "-1" ? string.Empty : " #" + number)}");
             OnBookUpdated(EventArgs.Empty);
         }
 

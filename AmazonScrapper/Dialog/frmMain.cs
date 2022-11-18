@@ -42,8 +42,8 @@ namespace AmazonScrapper.Dialog
         public frmMain(string searchText, string searchNumber, CancellationToken token = default)
             : this()
         {
-            SearchText = $"{searchText} {searchNumber}".Trim();
-            SearchNumber = searchNumber;
+            SearchNumber = searchNumber == "-1" ? string.Empty: searchNumber;
+            SearchText = $"{searchText} {SearchNumber}".Trim();
             doSearchOnOpen = true;
             Token = token;
             Token.Register(() => this.SafeInvoke(x => x.Close()));
