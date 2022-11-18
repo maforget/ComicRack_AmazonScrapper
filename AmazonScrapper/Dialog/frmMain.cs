@@ -263,9 +263,11 @@ namespace AmazonScrapper.Dialog
 
         private void SetTitleBar()
         {
-            var name = Application.ProductName;
-            var ver = Application.ProductVersion;
-            this.Text = $"{name} v{ver} - {this.Text}";
+            var ass = System.Reflection.Assembly.GetExecutingAssembly();
+            var name = ass.GetName().Name;
+            var ver = ass.GetName().Version;
+            var precision = ver.Build == 0 ? 2 : 3;
+            this.Text = $"{name} v{ver.ToString(precision)} - {this.Text}";
         }
         #endregion
 
