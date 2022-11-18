@@ -12,6 +12,7 @@ using AmazonScrapper.Data;
 using AmazonScrapper.Tools;
 using System.Threading;
 using AmazonScrapper.Settings;
+using System.Diagnostics;
 
 namespace AmazonScrapper.Dialog
 {
@@ -263,11 +264,10 @@ namespace AmazonScrapper.Dialog
 
         private void SetTitleBar()
         {
-            var ass = System.Reflection.Assembly.GetExecutingAssembly();
-            var name = ass.GetName().Name;
-            var ver = ass.GetName().Version;
-            var precision = ver.Build == 0 ? 2 : 3;
-            this.Text = $"{name} v{ver.ToString(precision)} - {this.Text}";
+            var ass = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var name = ass.ProductName;
+            var ver = ass.ProductVersion;
+            this.Text = $"{name} v{ver} - {this.Text}";
         }
         #endregion
 
