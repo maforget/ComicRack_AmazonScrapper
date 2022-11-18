@@ -37,6 +37,7 @@ namespace AmazonScrapper.Dialog
         {
             InitializeComponent();
             SetConfigItems();
+            SetTitleBar();
         }
 
         public frmMain(string searchText, string searchNumber, CancellationToken token = default)
@@ -258,6 +259,13 @@ namespace AmazonScrapper.Dialog
                 return;
 
             chkGroupBySerie.Checked = user.GroupBySerie;
+        }
+
+        private void SetTitleBar()
+        {
+            var name = Application.ProductName;
+            var ver = Application.ProductVersion;
+            this.Text = $"{name} v{ver} - {this.Text}";
         }
         #endregion
 
