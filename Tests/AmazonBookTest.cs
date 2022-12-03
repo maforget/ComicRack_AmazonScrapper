@@ -67,7 +67,7 @@ namespace Tests
             Assert.AreEqual("Scraped metadata from Amazon [B09898B3K5].", book.Notes);
             Assert.AreEqual("Usagi Yojimbo Saga", book.Series);
             Assert.AreEqual("3", book.Number);
-            Assert.AreEqual(0, book.PageCount);
+            Assert.AreEqual(616, book.PageCount);
             Assert.AreEqual(4, book.Day);
             Assert.AreEqual(1, book.Month);
             Assert.AreEqual(2022, book.Year);
