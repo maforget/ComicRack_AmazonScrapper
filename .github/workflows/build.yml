@@ -1,0 +1,45 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Nightly crplugin build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1.3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.1.1
+  
+    - name: Restore Packages
+      run: nuget restore AmazonScrapper.sln
+
+    - name: Build solution
+      run: msbuild AmazonScrapper\AmazonScrapper.csproj -t:rebuild -property:Configuration=Release
+      
+    - name: Package Files
+      run: powershell Compress-Archive -Path 'AmazonScrapper\bin\Release\AmazonScrapper.exe', 'AmazonScrapper\bin\Release\*.dll', 'AmazonScrapper\bin\Release\*.png', 'Python\*.ini', 'Python\*.py' -DestinationPath 'AmazonScrapper.zip' -Force
+         
+    - name: Rename to crplugin
+      run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
+      
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: AmazonScrapper.crplugin
