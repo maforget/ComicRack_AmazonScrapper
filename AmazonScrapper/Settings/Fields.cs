@@ -81,5 +81,9 @@ namespace AmazonScrapper.Settings
 
         [IniParam(Default = true)]
         public bool Web { get; set; } = true;
+
+        [IniParam(Default = true)]
+        [UserParam("Book Price")]
+        public bool BookPrice { get; set; } = true;
     }
 }

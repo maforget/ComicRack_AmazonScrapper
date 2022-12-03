@@ -30,6 +30,7 @@ namespace Tests
             Assert.AreEqual("Rob Guillory", book.Writer);//Author
             Assert.AreEqual("Rob Guillory, Taylor Wells", book.CoverArtist);
             Assert.AreEqual("Rob Guillory, Taylor Wells", book.Penciller);//Artists
+            Assert.AreEqual(0.0f, book.BookPrice);
         }
 
         [TestMethod]
@@ -54,6 +55,7 @@ namespace Tests
             Assert.AreEqual("Rob Guillory", book.Writer);//Author
             Assert.AreEqual("Rob Guillory", book.CoverArtist);
             Assert.AreEqual("Rob Guillory, Taylor Wells", book.Penciller);//Artists
+            Assert.AreEqual(7.49f, book.BookPrice);
         }
 
         [TestMethod]
@@ -77,6 +79,7 @@ namespace Tests
             Assert.AreEqual(@"https://www.amazon.com/dp/B09898B3K5", book.Web);
             Assert.AreEqual("Stan Sakai", book.Writer);//Author
             Assert.AreEqual("Stan Sakai", book.Penciller);//Illustrator
+            Assert.AreEqual(13.99f, book.BookPrice);
         }
 
         [TestMethod]
@@ -100,6 +103,7 @@ namespace Tests
             Assert.AreEqual(@"https://www.amazon.com/dp/B07X5N41P8", book.Web);
             Assert.AreEqual("Rob Guillory", book.Writer);//Author
             Assert.AreEqual("Rob Guillory", book.Penciller);//Contributor
+            Assert.AreEqual(10.99f, book.BookPrice);
         }
 
         [TestMethod]
@@ -126,6 +130,7 @@ namespace Tests
             Assert.AreEqual("David Marquez, Alejandro Sanchez", book.CoverArtist);
             Assert.AreEqual("David Marquez", book.Inker);
             Assert.AreEqual("Alejandro Sanchez", book.Colorist);
+            Assert.AreEqual(3.99f, book.BookPrice);
         }
 
         [TestMethod]
@@ -151,6 +156,7 @@ namespace Tests
             Assert.AreEqual("Michael Turner", book.CoverArtist);
             Assert.AreEqual("David Finch, Michael Turner, Marc Silvestri, Tony Salvador Daniel, Billy Tan", book.Penciller);
             Assert.AreEqual("Nathan Cabrera", book.Colorist);
+            Assert.AreEqual(17.99f, book.BookPrice);
         }
 
         [TestMethod]
@@ -174,6 +180,7 @@ namespace Tests
             Assert.AreEqual(@"https://www.amazon.com/dp/B01DUTBP8S", book.Web);
             Assert.AreEqual("Dan Jurgens, Roger Stern, Louise Simonson, Karl Kesel, Gerard Jones", book.Writer);//Author
             Assert.AreEqual("Tom Grummett, Jackson Guice, Jon Bogdanove, M.D. Bright", book.Penciller);
+            Assert.AreEqual(14.74f, book.BookPrice);
         }
 
         [TestMethod]
@@ -196,6 +203,7 @@ namespace Tests
             Assert.AreEqual(@"https://www.amazon.com/dp/B09SNVRZBQ", book.Web);
             Assert.AreEqual("ONE", book.Writer);//Author
             Assert.AreEqual("Yusuke Murata", book.Penciller);
+            Assert.AreEqual(6.49f, book.BookPrice);
         }
     }
 }

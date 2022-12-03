@@ -58,6 +58,7 @@ namespace AmazonScrapper.Data
         private float communityRating;
         private string scanInformation = string.Empty;
         private string cover = string.Empty;
+        private float bookPrice = -1f;
         #endregion
 
         #region Properties
@@ -127,6 +128,8 @@ namespace AmazonScrapper.Data
                 return _cover;
             }
         }
+
+        public float BookPrice => bookPrice;
         #endregion
 
         public static AmazonBookInfo GetAmazonBookInfo(AmazonLinkIssues link, CancellationToken ct = default)
@@ -170,6 +173,7 @@ namespace AmazonScrapper.Data
             bookInfo.languageISO = parser.Get<Language>().Result;
             bookInfo.pageCount = parser.Get<PageCount>().Result;
             bookInfo.communityRating = parser.Get<Rating>().Result;
+            bookInfo.bookPrice = parser.Get<BookPrice>().Result;
 
             //Date
             DateTime pubDate = parser.Get<Date>().Result;
