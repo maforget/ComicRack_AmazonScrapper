@@ -25,8 +25,7 @@ namespace AmazonScrapper
         public static void Run(object ComicRackApp, object[] books)
         {
             if (ComicRackApp == null || books?.Length <= 0)
-                //return;
-                throw new Exception();
+                return;
 
             _ComicRackApp = new App(ComicRackApp);
             _Books = new BookCollection(books);
