@@ -6,7 +6,7 @@
 <p align="center">
     <a href="https://github.com/maforget/ComicRack_AmazonScrapper/releases/latest/download/AmazonScrapper.crplugin" alt="Latest Release">
       <img src="https://img.shields.io/github/v/release/maforget/ComicRack_AmazonScrapper?label=latest%20release&logo=github" /></a>
-    <a href="https://github.com/maforget/ComicRack_AmazonScrapper/releases/download/latest/AmazonScrapper.crplugin" alt="Pre-Release">
+    <a href="https://github.com/maforget/ComicRack_AmazonScrapper/releases/download/nightly/AmazonScrapper.crplugin" alt="Pre-Release">
       <img src="https://img.shields.io/github/v/release/maforget/ComicRack_AmazonScrapper?include_prereleases&label=pre-release&logo=github" /></a>
 </p>
   
