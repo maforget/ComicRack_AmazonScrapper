@@ -28,9 +28,6 @@ def Config():
 def Process(books):
 	try:
 		Plugin.Run(ComicRack.App, books)
-	except OperationCanceledException as e:
-		print('Cancelled')
-		return
 	except Exception as e:
 		print('Generic Exception: ', e)
 		return
