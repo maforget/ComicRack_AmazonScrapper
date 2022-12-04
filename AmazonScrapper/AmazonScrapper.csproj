@@ -96,7 +96,6 @@
     <Compile Include="Data\Parser\IParser.cs" />
     <Compile Include="Data\Parser\Search\Series.cs" />
     <Compile Include="Settings\AppendConfig.cs" />
-    <Compile Include="Tools\Result.cs" />
     <Compile Include="Data\Parser\ParserBase.cs" />
     <Compile Include="Data\Parser\ParserManager.cs" />
     <Compile Include="Settings\Config.cs" />
