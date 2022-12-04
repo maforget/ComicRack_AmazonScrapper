@@ -1,9 +1,15 @@
 # Amazon Scrapper for ComicRack
 
-![Latest Release](https://img.shields.io/github/v/release/maforget/ComicRack_AmazonScrapper?label=latest%20release)
-<br/>
-[Download](https://github.com/maforget/ComicRack_AmazonScrapper/releases/latest/download//AmazonScrapper.crplugin)
-
+<p align="center">
+    <b><u><span style='font-size:14.0pt'>👇 Download Links 👇</span></u></b>
+</p>
+<p align="center">
+    <a href="https://github.com/maforget/ComicRack_AmazonScrapper/releases/latest/download/AmazonScrapper.crplugin" alt="Latest Release">
+      <img src="https://img.shields.io/github/v/release/maforget/ComicRack_AmazonScrapper?label=latest%20release&logo=github" /></a>
+    <a href="https://github.com/maforget/ComicRack_AmazonScrapper/releases/download/latest/AmazonScrapper.crplugin" alt="Pre-Release">
+      <img src="https://img.shields.io/github/v/release/maforget/ComicRack_AmazonScrapper?include_prereleases&label=pre-release&logo=github" /></a>
+</p>
+  
 #### This plugin uses the Amazon (formally Comixology) search to scrape data from Amazon pages and adds them to the metadata in ComicRack.
 
 This isn't meant to be use as a replacement for the [ComicVine Scrapper](https://github.com/cbanack/comic-vine-scraper), which is miles ahead of this. First the data on Amazon isn't as detailed and this doesn't use any API, it just scrapes the pages. Its main use is primarily to get some info for those releases that aren't yet available on ComicVine. 
