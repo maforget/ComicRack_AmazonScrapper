@@ -36,13 +36,15 @@ jobs:
     - name: Rename to crplugin
       run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
       
-    - uses: ncipollo/release-action@main
+    - name: Update Nightly Release
+      uses: andelf/nightly-release@main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        artifacts: "AmazonScrapper.crplugin"
+        tag_name: nightly
+        name: nightly
         draft: false
         prerelease: true
-        removeArtifacts: true
-        tag: nightly
-        commit: master
-        allowUpdates: true
-        updateOnlyUnreleased: true
+        body: |
+          This is a nightly release.
+        files: AmazonScrapper.crplugin
