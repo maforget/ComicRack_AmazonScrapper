@@ -121,4 +121,7 @@
   <data name="amazon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\amazon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CurrentCommit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\CurrentCommit.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

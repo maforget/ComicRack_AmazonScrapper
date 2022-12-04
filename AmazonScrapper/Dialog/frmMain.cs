@@ -265,9 +265,10 @@ namespace AmazonScrapper.Dialog
         private void SetTitleBar()
         {
             var ass = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            var currentCommit = Properties.Resources.CurrentCommit.Substring(0, 7);
             var name = ass.ProductName;
             var ver = ass.ProductVersion;
-            this.Text = $"{name} v{ver} - {this.Text}";
+            this.Text = $"{name} v{ver} [{currentCommit}] - {this.Text}";
         }
         #endregion
 

@@ -278,4 +278,7 @@ xcopy /s /y "$(SolutionDir)Python\*.py" "$(SolutionDir)..\ComicRack\ComicRack\bi
 xcopy /s /y "$(SolutionDir)Python\*.ini" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
 )</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>git rev-parse HEAD &gt; "$(ProjectDir)CurrentCommit.txt"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

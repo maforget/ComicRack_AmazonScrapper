@@ -69,5 +69,15 @@ namespace AmazonScrapper.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0aebc5b312124998288193478d25e868e4b08652
+        ///.
+        /// </summary>
+        internal static string CurrentCommit {
+            get {
+                return ResourceManager.GetString("CurrentCommit", resourceCulture);
+            }
+        }
     }
 }
