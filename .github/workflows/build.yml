@@ -36,12 +36,10 @@ jobs:
     - name: Rename to crplugin
       run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
       
-    - name: Pre-Releases
-      uses: softprops/action-gh-release@master
+    - name: Update nightly release
+      uses: eine/tip@master
       with:
-        name: "Development Build"
-        #body: ${{steps.build_changelog.outputs.changelog}}
-        tag_name: nightly
-        prerelease: true
+        tag: nightly
+        rm: true
+        token: ${{ secrets.GITHUB_TOKEN }}
         files: AmazonScrapper.crplugin
-        append_body: true
