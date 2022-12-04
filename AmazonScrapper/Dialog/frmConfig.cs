@@ -74,5 +74,23 @@ namespace AmazonScrapper.Dialog
         {
             this.Location = new Point(this.Location.X - 100, this.Location.Y);
         }
+
+        private void btnCheckAll_Click(object sender, EventArgs e)
+        {
+            ChangeCheckForAll(true);
+        }
+
+        private void btnUncheckAll_Click(object sender, EventArgs e)
+        {
+            ChangeCheckForAll(false);
+        }
+        private void ChangeCheckForAll(bool newValue)
+        {
+            foreach (var item in this.Controls)
+            {
+                if (item is CheckBox)
+                    (item as CheckBox).Checked = newValue;
+            }
+        }
     }
 }
