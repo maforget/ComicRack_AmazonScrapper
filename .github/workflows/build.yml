@@ -36,10 +36,12 @@ jobs:
     - name: Rename to crplugin
       run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
       
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - name: Pre-Release
+      uses: plu5/automatic-releases-with-sha-action@main
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "latest"
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        is_tag_static: true
+        automatic_release_tag: "nightly"
         prerelease: true
         title: "Development Build"
         files: AmazonScrapper.crplugin
