@@ -1,7 +1,7 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
-name: Nightly crplugin build
+name: Nightly
 
 on:
   push:
@@ -19,10 +19,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: setup-msbuild
-      uses: microsoft/setup-msbuild@v1.1.3
+      uses: microsoft/setup-msbuild@v1
 
     - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.1.1
+      uses: NuGet/setup-nuget@v1
   
     - name: Restore Packages
       run: nuget restore AmazonScrapper.sln
@@ -36,12 +36,12 @@ jobs:
     - name: Rename to crplugin
       run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
       
-    - name: Pre-Release
-      uses: plu5/automatic-releases-with-sha-action@main
+    - name: Pre-Releases
+      uses: softprops/action-gh-release@master
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        is_tag_static: true
-        automatic_release_tag: "nightly"
+        name: "Development Build"
+        #body: ${{steps.build_changelog.outputs.changelog}}
+        tag_name: nightly
         prerelease: true
-        title: "Development Build"
         files: AmazonScrapper.crplugin
+        append_body: true
