@@ -265,7 +265,8 @@ namespace AmazonScrapper.Dialog
         private void SetTitleBar()
         {
             var ass = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var currentCommit = Properties.Resources.CurrentCommit?.Substring(0, 7);
+            var isDirty = !string.IsNullOrEmpty(Properties.Resources.isDirty.Trim());
+            var currentCommit = $"{Properties.Resources.CurrentCommit?.Substring(0, 7)}{(isDirty ? "-dirty" : "")}";
             var name = ass.ProductName;
             var ver = ass.ProductVersion;
             this.Text = string.IsNullOrEmpty(currentCommit) ? $"{name} v{ver} - {this.Text}" : $"{name} v{ver} [{currentCommit}] - {this.Text}";

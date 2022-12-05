@@ -275,6 +275,7 @@ xcopy /s /y "$(SolutionDir)Python\*.ini" "$(SolutionDir)..\ComicRack\ComicRack\b
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>git rev-parse HEAD &gt; "$(ProjectDir)CurrentCommit.txt"</PreBuildEvent>
+    <PreBuildEvent>git rev-parse HEAD &gt; "$(ProjectDir)CurrentCommit.txt"
+git status --porcelain &gt; "$(ProjectDir)isDirty.txt"</PreBuildEvent>
   </PropertyGroup>
 </Project>
