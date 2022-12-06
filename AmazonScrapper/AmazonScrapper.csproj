@@ -278,6 +278,7 @@ xcopy /s /y "$(SolutionDir)Python\*.ini" "$(SolutionDir)..\ComicRack\ComicRack\b
   <PropertyGroup>
     <PreBuildEvent>git rev-parse HEAD &gt; "$(ProjectDir)CurrentCommit.txt"
 git status --porcelain &gt; "$(ProjectDir)isDirty.txt"
-git show-ref --tags -d &gt; "$(ProjectDir)Tags.txt"</PreBuildEvent>
+git show-ref --tags -d &gt; "$(ProjectDir)Tags.txt"
+exit 0</PreBuildEvent>
   </PropertyGroup>
 </Project>
