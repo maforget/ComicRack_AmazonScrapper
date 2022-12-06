@@ -171,6 +171,7 @@
     <Compile Include="Tools\NaturalComparer.cs" />
     <Compile Include="Tools\HourGlass.cs" />
     <Compile Include="Tools\SortableBindingList.cs" />
+    <Compile Include="Tools\Version.cs" />
     <Compile Include="Web\Fetcher.cs" />
     <Compile Include="Dialog\frmMain.cs">
       <SubType>Form</SubType>

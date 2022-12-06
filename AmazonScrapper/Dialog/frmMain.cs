@@ -264,41 +264,8 @@ namespace AmazonScrapper.Dialog
 
         private void SetTitleBar()
         {
-            var ass = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            var isDirty = !string.IsNullOrEmpty(Properties.Resources.isDirty.Trim());
-            var currentCommit = $"{Properties.Resources.CurrentCommit?.Substring(0, 7)}{(isDirty ? "-dirty" : "")}";
-            var currentTag = GetCurrentTag(Properties.Resources.Tags.Trim(), Properties.Resources.CurrentCommit.Trim());
-            var isFullRelease = !string.IsNullOrEmpty(currentTag);
-            var name = ass.ProductName;
-            var ver = ass.ProductVersion;
-            this.Text = $"{name} v{ver}{(isFullRelease ? "" : " [" + currentCommit + "]")} - {this.Text}";
-        }
-
-        private string GetCurrentTag(string tags, string currentCommit)
-        {
-            var dict = new Dictionary<string, string>();
-            var sr = new System.IO.StringReader(tags);
-
-            while (true)
-            {
-                string line = sr.ReadLine();
-
-                if (line != null)
-                {
-                    var split = line.Split(' ');
-                    var commit = split[0].Trim();
-                    var tag = split[1].Trim().Replace("refs/tags/", "");
-                    dict.Add(tag, commit);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            var result = dict.FirstOrDefault(x => x.Key != "nightly" && x.Value == currentCommit).Key; 
-            return result;
-
+            var title = Tools.Version.GetCurrentVersionInfo();
+            this.Text = $"{title} - {this.Text}";
         }
         #endregion
 
