@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -21,9 +22,11 @@ namespace AmazonScrapper.Tools
             property.SetValue(obj, value);
         }
 
-        public static object GetDefault(this Type type)
+        public static object GetDefault(this PropertyInfo pi)
         {
-            return type.IsValueType ? Activator.CreateInstance(type) : null;
+            var def = pi.GetCustomAttribute<DefaultValueAttribute>();
+            return def != null ? def.Value : 
+                pi.PropertyType.IsValueType ? Activator.CreateInstance(pi.PropertyType) : null;
         }
     }
 }

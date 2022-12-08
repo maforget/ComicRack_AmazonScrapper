@@ -62,35 +62,64 @@ namespace AmazonScrapper.Data
         #endregion
 
         #region Properties
+        [DefaultValue("")]
         public string Title => title;
+        [DefaultValue("")]
         public string Series => series;
+        [DefaultValue("")]
         public string Number => number;
+        [DefaultValue(-1)]
         public int Count => count;
+        [DefaultValue(-1)]
         public int Volume => volume;
+        [DefaultValue("")]
         public string AlternateSeries => alternateSeries;
+        [DefaultValue("")]
         public string AlternateNumber => alternateNumber;
+        [DefaultValue("")]
         public string StoryArc => storyArc;
+        [DefaultValue("")]
         public string SeriesGroup => seriesGroup;
+        [DefaultValue(-1)]
         public int AlternateCount => alternateCount;
+        [DefaultValue("")]
         public string Summary => summary;
+        [DefaultValue("")]
         public string Notes => notes;
+        [DefaultValue("")]
         public string Review => review;
+        [DefaultValue(-1)]
         public int Year => year;
+        [DefaultValue(-1)]
         public int Month => month;
+        [DefaultValue(-1)]
         public int Day => day;
+        [DefaultValue("")]
         public string Writer => writer;
+        [DefaultValue("")]
         public string Penciller => penciller;
+        [DefaultValue("")]
         public string Inker => inker;
+        [DefaultValue("")]
         public string Colorist => colorist;
+        [DefaultValue("")]
         public string Letterer => letterer;
+        [DefaultValue("")]
         public string CoverArtist => coverArtist;
+        [DefaultValue("")]
         public string Editor => editor;
+        [DefaultValue("")]
         public string Publisher => publisher;
+        [DefaultValue("")]
         public string Imprint => imprint;
+        [DefaultValue("")]
         public string Genre => genre;
+        [DefaultValue("")]
         public string Web => web;
         public int PageCount => pageCount;
+        [DefaultValue("")]
         public string LanguageISO => languageISO;
+        [DefaultValue("")]
         public string Format => format;
 
         [DefaultValue(YesNo.Unknown)]
@@ -110,11 +139,17 @@ namespace AmazonScrapper.Data
                 return manga;
             }
         }
+        [DefaultValue("")]
         public string Characters => characters;
+        [DefaultValue("")]
         public string Teams => teams;
+        [DefaultValue("")]
         public string MainCharacterOrTeam => mainCharacterOrTeam;
+        [DefaultValue("")]
         public string Locations => locations;
+        [DefaultValue(-1f)]
         public float CommunityRating => communityRating;
+        [DefaultValue("")]
         public string ScanInformation => scanInformation;
 
         private Image _cover;
@@ -129,7 +164,9 @@ namespace AmazonScrapper.Data
             }
         }
 
+        [DefaultValue(-1f)]
         public float BookPrice => bookPrice;
+
         #endregion
 
         public static AmazonBookInfo GetAmazonBookInfo(AmazonLinkIssues link, CancellationToken ct = default)
@@ -185,7 +222,7 @@ namespace AmazonScrapper.Data
         }
 
         public object GetValue(string property) => this.GetType().GetPropertyValue(this, property);
-        public object GetDefault(string property) => this.GetType().GetProperty(property).PropertyType.GetDefault();
+        public object GetDefault(string property) => this.GetType().GetProperty(property).GetDefault();
     }
 
     public enum YesNo
