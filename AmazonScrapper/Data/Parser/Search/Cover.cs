@@ -28,7 +28,9 @@ namespace AmazonScrapper.Data.Parser.Search
 
             //Change the URL from webp to jpg, when using the chrome user agent.
             for (int i = 0; i < imageLink.Length; i++)
-                imageLink[i] = imageLink[i].Replace("_FMwebp", "");
+            {
+                imageLink[i] = Regex.Replace(imageLink[i], "/W/WEBP.+?/images|FMwebp_", "", RegexOptions.IgnoreCase);
+            }
 
             return imageLink.Length == 0 ? string.Empty : imageLink[imageLink.Length - 1].Split(' ')[0];
         }
