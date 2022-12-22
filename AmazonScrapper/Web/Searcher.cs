@@ -17,7 +17,7 @@ namespace AmazonScrapper.Web
     {
         #region Fields
         private string _searchURL;
-        private string _searchURLSeries;
+        //private string _searchURLSeries;
         private string _searchTerm;
         private bool _strictSearch;
         private int MaxPages => 5;
@@ -31,7 +31,7 @@ namespace AmazonScrapper.Web
                 _searchTerm = searchTerm;
                 string sort = sortByDate ? "&s=date-desc-rank" : string.Empty;
                 _searchURL = $@"https://www.amazon.com/s?k={SearchTermEncoded}&i=comics-manga{sort}";
-                _searchURLSeries = $@"https://www.amazon.com/s?i=comics-manga&rh=p_lbr_books_series_browse-bin:{SearchTermEncoded}{sort}"; 
+                //_searchURLSeries = $@"https://www.amazon.com/s?i=comics-manga&rh=p_lbr_books_series_browse-bin:{SearchTermEncoded}{sort}"; 
             }
         }
 
