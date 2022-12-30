@@ -123,8 +123,6 @@ namespace AmazonScrapper
             {
                 var frmM = (frmMain)sender;
                 _frmProgress.IncreaseProgressBarByOne();
-                //var bookType = _CurrentBook.GetType();
-                //var ComicRackType = _ComicRackApp.GetType();
 
                 var token = frmM.Token;
                 var result = frmM.DialogResult;
