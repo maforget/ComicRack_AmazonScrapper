@@ -23,7 +23,8 @@ namespace AmazonScrapper.Data.Parser.Collection
         /// <returns>the cover link</returns>
         public override object Parse()
         {
-            return Node.SelectSingleNode(@".//img[contains(@class, 'asinImage')]")?.Attributes["src"]?.Value?.Trim();
+            var imageLink = Node.SelectSingleNode(@".//img[contains(@class, 'asinImage')]")?.Attributes["src"]?.Value?.Trim();
+            return Regex.Replace(imageLink, "/W/WEBP.+?/images|FMwebp_", "", RegexOptions.IgnoreCase);
         }
     }
 }
