@@ -4,9 +4,13 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        type: string
+        default: 'X.Y{.Z}'
 
 jobs:
   build:
@@ -36,9 +40,13 @@ jobs:
       run: ren  AmazonScrapper.zip AmazonScrapper.crplugin
       
     - name: Release
-      uses: softprops/action-gh-release@master
+      uses: ncipollo/release-action@main
       with:
-        #body: ${{steps.build_changelog.outputs.changelog}}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: false
+        artifactErrorsFailBuild: true
         draft: true
         prerelease: false
-        files: AmazonScrapper.crplugin
+        commit: ${{ github.ref_name }}
+        tag: 'v${{ github.event.inputs.version }}'
+        artifacts: "AmazonScrapper.crplugin"
