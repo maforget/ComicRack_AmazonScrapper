@@ -13,8 +13,7 @@ namespace AmazonScrapper.Data
         public string Serie { get; set; }
         public int Count { get; set; } = -1;
         public string Number { get; set; }
-        public string DisplayText => Count <= 0 && string.IsNullOrEmpty(Number) ? Serie : 
-            Count > 0 && !string.IsNullOrEmpty(Number) ? $"{Serie} ({Number} of {Count} book series)" : $"{Serie} ({Count} book series)";
+        public string DisplayText => $"{Serie} ({(!string.IsNullOrEmpty(Number) && Count > 0 ? $"{Number} of " : "")}{(Count > 0 ? $"{Count} " : "")}book series)";
         public AmazonLinkSerie SerieLink { get; private set; }
 
         /// <summary>
@@ -35,7 +34,8 @@ namespace AmazonScrapper.Data
             //Expecting Pattern: "Book 5 of 19: Farmhand"
             Match regex1 = Regex.Match(text, @"Book\s+(?<number>\d+)\s+of\s+(?<count>\d+)\:\s+(?<title>.+)", RegexOptions.IgnoreCase);
             //Expecting Pattern: "Part of: Usagi Yojimbo Saga (10 Books)"
-            Match regex2 = Regex.Match(text, @"Part\s+of\:(?<title>.+)\s+\((?<count>\d+)\sBooks\)", RegexOptions.IgnoreCase);
+            //Expecting Pattern: "Part of: The Way of the Househusband"
+            Match regex2 = Regex.Match(text, @"Part\s+of\:\s*(?<title>(?:[^(]|$)+)(?:\((?<count>\d+)\sBooks\))*", RegexOptions.IgnoreCase);
             //Expecting Pattern: "Chapter 9 of 9: What I Love About You"
             Match regex3 = Regex.Match(text, @"Chapter\s+(?<number>\d+)\s+of\s+(?<count>\d+)\:\s+(?<title>.+)", RegexOptions.IgnoreCase);
             //Expecting Pattern: "Volume 24 of 24: One-Punch Man"

@@ -58,6 +58,18 @@ namespace Tests
         }
 
         [TestMethod]
+        public void TestSerieInfoAlt3()
+        {
+            var serieInfo = SerieInfo.Parse("Part of: The Way of the Househusband", bookTitle: "The Way of the Househusband, Vol. 9");
+
+            Assert.AreEqual("Part of: The Way of the Househusband", serieInfo.RawText);
+            Assert.AreEqual("The Way of the Househusband (book series)", serieInfo.DisplayText);
+            Assert.AreEqual("The Way of the Househusband", serieInfo.Serie);
+            Assert.AreEqual("9", serieInfo.Number);
+            Assert.AreEqual(-1, serieInfo.Count);
+        }
+
+        [TestMethod]
         public void TestSerieInfoForCollection()
         {
             var serieInfo = SerieInfo.Parse("5", "Farmhand", "19");
