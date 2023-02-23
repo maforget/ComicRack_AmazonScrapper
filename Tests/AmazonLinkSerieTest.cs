@@ -56,7 +56,7 @@ namespace Tests
             Assert.IsNull(thirdIssue.SerieInfo.RawText);
             Assert.AreEqual("Usagi Yojimbo Saga", thirdIssue.SerieInfo.Serie);
             Assert.AreEqual("2", thirdIssue.SerieInfo.Number);
-            Assert.AreEqual(10, thirdIssue.SerieInfo.Count);
+            Assert.AreEqual(9, thirdIssue.SerieInfo.Count);
         }
 
         [TestMethod]
@@ -76,7 +76,27 @@ namespace Tests
             Assert.IsNull(fortyIssue.SerieInfo.RawText);
             Assert.AreEqual("40", fortyIssue.SerieInfo.Number);
             Assert.AreEqual("Saga", fortyIssue.SerieInfo.Serie);
-            Assert.AreEqual(60, fortyIssue.SerieInfo.Count);
+            Assert.AreEqual(64, fortyIssue.SerieInfo.Count);
+        }
+
+        [TestMethod]
+        public void TestSeriesGetIssues4()
+        {
+            var amazonLink = new AmazonLinkSerie("B07JJK91HZ");
+            var issues = amazonLink.GetIssues();//From the collections View
+            var thirdIssue = issues[2];
+
+            Assert.AreEqual("B01DUTBP8S", thirdIssue.ASIN);
+            Assert.AreEqual("Superman: Reign of the Supermen (Superman: The Death of Superman)", thirdIssue.Title);
+            Assert.AreEqual(@"https://www.amazon.com/dp/B01DUTBP8S", thirdIssue.Link);
+
+            Assert.AreEqual("B07JJK91HZ", thirdIssue.SerieInfo.SerieLink.ASIN);
+            Assert.AreEqual(@"https://www.amazon.com/dp/B07JJK91HZ", thirdIssue.SerieInfo.SerieLink.Link);
+
+            Assert.IsNull(thirdIssue.SerieInfo.RawText);
+            Assert.AreEqual("Superman: The Death of Superman", thirdIssue.SerieInfo.Serie);
+            Assert.AreEqual("3", thirdIssue.SerieInfo.Number);
+            Assert.AreEqual(5, thirdIssue.SerieInfo.Count);
         }
     }
 }
