@@ -61,7 +61,7 @@ namespace AmazonScrapper.Data.Parser
             var collection = new ParserManager<IParserCollection>(node);
             var title = collection.Get<Title>().ToString();
             var number = Number.ParseFromTitle(title);
-            var index = Regex.Match(node.Id, @".+_(\d)$", RegexOptions.IgnoreCase)?.Groups[1]?.Value;//Use the index instead if no number
+            var index = Regex.Match(node.Id, @".+_(\d+)$", RegexOptions.IgnoreCase)?.Groups[1]?.Value;//Use the index instead if no number
             var num = string.IsNullOrEmpty(number) ? index : number;//if no number in the title, then take the index
 
             var serieInfo = SerieInfo.Parse(num, collectionInfo.Title, collectionInfo.Size, linkSerie);
