@@ -158,9 +158,9 @@ namespace AmazonScrapper.Web
             lock (syncLock)
             {
                 OSsystem = OS[rand.Next(OS.Length)];
-                int version = rand.Next(93, 106);
+                int version = rand.Next(103, 110);
                 int minor = 0;
-                int patch = rand.Next(4950, 5162);
+                int patch = rand.Next(5060, 5481);
                 int build = rand.Next(80, 212);
                 string randomBroswer = browserType[rand.Next(browserType.Length)];
                 string browserTemplate = UATemplate[randomBroswer];
