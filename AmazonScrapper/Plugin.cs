@@ -141,9 +141,9 @@ namespace AmazonScrapper
                         //Set the Image for fileless
                         if (c.Key == "Cover" && string.IsNullOrEmpty(_CurrentBook.FilePath))
                             _ComicRackApp.SetCustomBookThumbnail(_CurrentBook, bookInfo.Cover);
-                        else if (c.Value.Enabled && value != def && c.Key != "Cover" & !c.Value.Append.Enabled)
+                        else if (c.Value.Enabled && value != null && value != def && c.Key != "Cover" & !c.Value.Append.Enabled)
                             _CurrentBook.SetValue(c.Key, value);
-                        else if (c.Value.Enabled && value != def && c.Key != "Cover" & c.Value.Append.Enabled)
+                        else if (c.Value.Enabled && value != null && value != def && c.Key != "Cover" & c.Value.Append.Enabled)
                             _CurrentBook.AppendValue(c.Key, value, c.Value.Append.NewLine);
                     }
                 }
