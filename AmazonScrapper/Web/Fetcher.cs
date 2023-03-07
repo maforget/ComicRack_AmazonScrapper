@@ -147,28 +147,25 @@ namespace AmazonScrapper.Web
             object syncLock = new object();
 
             string userAgent = "";
-            var browserType = new string[] { "chrome", "firefox" };
-            var UATemplate = new Dictionary<string, string> 
-            {
-                { "chrome", "Mozilla/5.0 ({0}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{1} Safari/537.36" },
-                { "firefox", "Mozilla/5.0 ({0}; rv:{1}.0) Gecko/20100101 Firefox/{1}.0" },
-            };
-            var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 12_4" };
-            string OSsystem = "";
+            var browserType = new string[] { "chrome", "edge", "firefox" };
             lock (syncLock)
             {
-                OSsystem = OS[rand.Next(OS.Length)];
                 int version = rand.Next(103, 110);
-                int minor = 0;
-                int patch = rand.Next(5060, 5481);
-                int build = rand.Next(80, 212);
-                string randomBroswer = browserType[rand.Next(browserType.Length)];
-                string browserTemplate = UATemplate[randomBroswer];
                 string finalVersion = version.ToString();
-                if (randomBroswer == "chrome")
-                    finalVersion = $"{version}.{minor}.{patch}.{build}";
+                int patch = rand.Next(1264, 1660);
+                int build = rand.Next(10, 80);
+                string randomBroswer = browserType[rand.Next(browserType.Length)];
 
-                userAgent = String.Format(browserTemplate, OSsystem, finalVersion);
+                var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 13_2_1" };
+                string OSsystem = OS[rand.Next(OS.Length)];
+
+                var UATemplate = new Dictionary<string, string> 
+                {
+                    { "chrome", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36" },
+                    { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.{patch}.{build}" },
+                    { "firefox", $"Mozilla/5.0 ({OSsystem}; rv:{finalVersion}.0) Gecko/20100101 Firefox/{finalVersion}.0" },
+                };
+                userAgent = UATemplate[randomBroswer];
             }
 
             //System.Windows.Forms.MessageBox.Show(userAgent);
