@@ -158,7 +158,7 @@ namespace AmazonScrapper.Data
             get
             {
                 if (_cover == null)
-                    _cover = Fetcher.GetImage(cover);
+                    _cover = Fetcher.Instance.GetImage(cover);
 
                 return _cover;
             }
@@ -179,7 +179,7 @@ namespace AmazonScrapper.Data
             if (string.IsNullOrEmpty(link.Link))
                 return null;
 
-            HtmlNode node = Fetcher.GetBody(link.Link, ct);
+            HtmlNode node = Fetcher.Instance.GetBody(link.Link, ct);
             if (node == null)
                 return null;
 

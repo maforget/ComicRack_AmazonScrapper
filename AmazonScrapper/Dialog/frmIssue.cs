@@ -119,7 +119,7 @@ namespace AmazonScrapper.Dialog
 
             AmazonLink link = GetCurrentRow();
             if (link != null)
-                pbCover.SafeInvoke(x => x.Image = Fetcher.GetImage(link.ImageLink));
+                pbCover.SafeInvoke(x => x.Image = Fetcher.Instance.GetImage(link.ImageLink));
         }
         #endregion
 

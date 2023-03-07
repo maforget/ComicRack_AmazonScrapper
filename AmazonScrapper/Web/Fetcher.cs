@@ -12,9 +12,35 @@ using System.Threading;
 
 namespace AmazonScrapper.Web
 {
-    public static class Fetcher
+    public class Fetcher
     {
-        public static HtmlNode GetHtmlDocument(string url, CancellationToken ct = default)
+        CookieContainer cookieContainer = new CookieContainer();
+        string userAgent = string.Empty;
+
+        public Fetcher()
+        {
+            cookieContainer = new CookieContainer();
+            cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
+            userAgent = string.Empty;
+        }
+
+        static Fetcher _instance;
+        public static Fetcher Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new Fetcher();
+                return _instance;
+            }
+        }
+
+        public void Reset()
+        {
+            _instance = new Fetcher();
+        }
+
+        public HtmlNode GetHtmlDocument(string url, CancellationToken ct = default)
         {
             try
             {
@@ -41,7 +67,7 @@ namespace AmazonScrapper.Web
             }
         }
 
-        public static HtmlNode GetBody(string url, CancellationToken ct = default)
+        public HtmlNode GetBody(string url, CancellationToken ct = default)
         {
             try
             {
@@ -59,7 +85,7 @@ namespace AmazonScrapper.Web
             }
         }
 
-        public static string ReadURL(string url, CancellationToken ct = default)
+        public Stream Fetch(string url, CancellationToken ct = default)
         {
             try
             {
@@ -71,9 +97,7 @@ namespace AmazonScrapper.Web
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest Req = WebRequest.CreateHttp(url);
-                var domain = new Uri(url).Host.Replace("www", "");
-                var cookieContainer = new CookieContainer();
-                cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = domain});
+                CookieContainer cookieContainer = GetCookieContainer(url);
                 Req.CookieContainer = cookieContainer;
                 Req.Timeout = 15000;
                 Req.UserAgent = GetRandomUserAgent();
@@ -84,18 +108,12 @@ namespace AmazonScrapper.Web
                 Req.Headers.Add("Accept-Language", "en-US,en;q=0.5");
                 Req.KeepAlive = true;
                 WebResponse webresponse = Req.GetResponse();
+                var cookies = cookieContainer.GetCookies(new Uri(url));
 
                 if (ct.IsCancellationRequested) ct.ThrowIfCancellationRequested();
                 var inStream = webresponse.GetResponseStream();
-                var encode = Encoding.GetEncoding("utf-8");
-                var ReadStream = new StreamReader(inStream, encode);
-                var page = ReadStream.ReadToEnd();
 
-                inStream.Close();
-                ReadStream.Close();
-
-                //return HttpUtility.HtmlDecode(page);
-                return page;
+                return inStream;
             }
             catch (WebException e) when (e.InnerException is System.Net.Sockets.SocketException)
             {
@@ -103,7 +121,39 @@ namespace AmazonScrapper.Web
                 if (inEx != null && inEx.SocketErrorCode.ToString() == "AccessDenied")
                     AccessDeniedDetected();
 
-                return string.Empty;
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        private CookieContainer GetCookieContainer(string url)
+        {
+            var domain = new Uri(url).Host.Replace("www", "");
+            return cookieContainer;
+        }
+
+        public string ReadURL(string url, CancellationToken ct = default)
+        {
+            try
+            {
+                if (ct.IsCancellationRequested)
+                    ct.ThrowIfCancellationRequested();
+
+                if (string.IsNullOrEmpty(url))
+                    return null;
+
+                var inStream = Fetch(url, ct);
+                var encode = Encoding.GetEncoding("utf-8");
+                var ReadStream = new StreamReader(inStream, encode);
+                var page = ReadStream.ReadToEnd();
+
+                inStream.Close();
+                ReadStream.Close();
+
+                return page;
             }
             catch (Exception)
             {
@@ -111,7 +161,7 @@ namespace AmazonScrapper.Web
             }
         }
 
-        public static Image GetImage(string cover, CancellationToken ct = default)
+        public Image GetImage(string cover, CancellationToken ct = default)
         {
             try
             {
@@ -121,12 +171,16 @@ namespace AmazonScrapper.Web
                 if (string.IsNullOrEmpty(cover))
                     return null;
 
-                using (WebClient web = new WebClient())
-                {
-                    var b = web.DownloadData(cover);
-                    var image = b.byteArrayToImage();
-                    return image;
-                }
+                var stream = Fetch(cover, ct);
+                var image = Image.FromStream(stream);
+                return image;
+
+                //using (WebClient web = new WebClient())
+                //{
+                //    var b = web.DownloadData(cover);
+                //    var image = b.byteArrayToImage();
+                //    return image;
+                //}
             }
             catch (Exception)
             {
@@ -144,34 +198,35 @@ namespace AmazonScrapper.Web
             System.Windows.Forms.MessageBox.Show("Access Denied");
         }
 
-        private static string GetRandomUserAgent()
+        private string GetRandomUserAgent()
         {
-            Random rand = new Random();
-            object syncLock = new object();
-
-            string userAgent = "";
-            var browserType = new string[] { "chrome", "edge", "firefox" };
-            lock (syncLock)
+            if (string.IsNullOrEmpty(userAgent))
             {
-                int version = rand.Next(103, 110);
-                string finalVersion = version.ToString();
-                int patch = rand.Next(1264, 1660);
-                int build = rand.Next(10, 80);
-                string randomBroswer = browserType[rand.Next(browserType.Length)];
+                Random rand = new Random();
+                object syncLock = new object();
 
-                var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 13_2_1" };
-                string OSsystem = OS[rand.Next(OS.Length)];
-
-                var UATemplate = new Dictionary<string, string>
+                var browserType = new string[] { "chrome", "edge", "firefox" };
+                lock (syncLock)
                 {
-                    { "chrome", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36" },
-                    { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.{patch}.{build}" },
-                    { "firefox", $"Mozilla/5.0 ({OSsystem}; rv:{finalVersion}.0) Gecko/20100101 Firefox/{finalVersion}.0" },
-                };
-                userAgent = UATemplate[randomBroswer];
+                    int version = rand.Next(103, 110);
+                    string finalVersion = version.ToString();
+                    int patch = rand.Next(1264, 1660);
+                    int build = rand.Next(10, 80);
+                    string randomBroswer = browserType[rand.Next(browserType.Length)];
+
+                    var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 13_2_1" };
+                    string OSsystem = OS[rand.Next(OS.Length)];
+
+                    var UATemplate = new Dictionary<string, string>
+                    {
+                        { "chrome", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36" },
+                        { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.{patch}.{build}" },
+                        { "firefox", $"Mozilla/5.0 ({OSsystem}; rv:{finalVersion}.0) Gecko/20100101 Firefox/{finalVersion}.0" },
+                    };
+                    userAgent = UATemplate[randomBroswer];
+                }
             }
 
-            //System.Windows.Forms.MessageBox.Show(userAgent);
             return userAgent;
         }
     }

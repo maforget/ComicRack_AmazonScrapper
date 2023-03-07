@@ -99,7 +99,7 @@ namespace AmazonScrapper.Web
                 ct.ThrowIfCancellationRequested();
 
             string url = $"{SearchURL}&page={page}";
-            HtmlNode body = Fetcher.GetBody(url, ct);
+            HtmlNode body = Fetcher.Instance.GetBody(url, ct);
 
             if (body == null)
                 return nodes;

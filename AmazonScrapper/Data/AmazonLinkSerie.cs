@@ -45,7 +45,7 @@ namespace AmazonScrapper.Data
                 ct.ThrowIfCancellationRequested();
 
             //Get Normal page to get the collection info at the top
-            var body = Fetcher.GetBody(Link, ct);
+            var body = Fetcher.Instance.GetBody(Link, ct);
             var collectionInfo = CollectionPage.ParseCollectionInfo(body);
             results = CollectionPage.ParseIssues(body, collectionInfo, this);
 
@@ -55,7 +55,7 @@ namespace AmazonScrapper.Data
                     ct.ThrowIfCancellationRequested();
 
                 //Use the ajax page to get all the issues
-                var ajax = Fetcher.GetHtmlDocument(FullCollectionlURL, ct);
+                var ajax = Fetcher.Instance.GetHtmlDocument(FullCollectionlURL, ct);
                 results = CollectionPage.ParseIssues(ajax, collectionInfo, this);
             }
 

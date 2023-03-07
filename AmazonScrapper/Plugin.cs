@@ -12,6 +12,7 @@ using AmazonScrapper.Tools;
 using System.Security.AccessControl;
 using AmazonScrapper.ComicRack;
 using AmazonScrapper.Settings;
+using AmazonScrapper.Web;
 
 namespace AmazonScrapper
 {
@@ -33,6 +34,7 @@ namespace AmazonScrapper
             _frmProgress = new frmProgress(_Books.Length);
             try
             {
+                Fetcher.Instance.Reset();
                 //frm.ShowDialogOnNewThread();
                 _frmProgress.ShowDialog();
             }
