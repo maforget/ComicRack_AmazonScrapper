@@ -155,7 +155,8 @@ namespace AmazonScrapper.Dialog
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
         {
-            LoadImage();
+            if (dgvResults.Focused)
+                LoadImage();
         }
 
         private void dgvResults_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -213,6 +214,7 @@ namespace AmazonScrapper.Dialog
 
             return null;
         }
+
         private void LoadImage()
         {
             pbCover.Image = null;
@@ -229,6 +231,7 @@ namespace AmazonScrapper.Dialog
                 sourceResults.SetBindingSourceDataSource(null, this);
                 sourceResults.SetBindingSourceDataSource(GroupBySerie ? Searcher.GroupResultsBySerie(Results) : Results, this);
             }
+            LoadImage();
             SetIssueButtonVisibility();
             SetLabelText();
         }

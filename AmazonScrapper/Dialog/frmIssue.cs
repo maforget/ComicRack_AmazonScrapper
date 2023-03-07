@@ -51,7 +51,8 @@ namespace AmazonScrapper.Dialog
                     using (HourGlass hourglass = new HourGlass(this))
                     {
                         issues = link.GetIssues(Token);
-                        sourceResults.SetBindingSourceDataSource(issues, this); 
+                        sourceResults.SetBindingSourceDataSource(issues, this);
+                        LoadImage();
                     }
                 }, Token);
                 //task.Wait(Token);
@@ -81,7 +82,8 @@ namespace AmazonScrapper.Dialog
         #region DataViewGrid Events
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
         {
-            LoadImage();
+            if (dgvResults.Focused)
+                LoadImage();
         }
 
         private void dgvResults_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +115,7 @@ namespace AmazonScrapper.Dialog
 
             return null;
         }
+
         private void LoadImage()
         {
             pbCover.Image = null;
