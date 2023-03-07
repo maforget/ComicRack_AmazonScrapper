@@ -71,13 +71,16 @@ namespace AmazonScrapper.Web
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 HttpWebRequest Req = WebRequest.CreateHttp(url);
+                var domain = new Uri(url).Host.Replace("www", "");
+                var cookieContainer = new CookieContainer();
+                cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = domain});
+                Req.CookieContainer = cookieContainer;
                 Req.Timeout = 15000;
-                //Req.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:104.0) Gecko/20100101 Firefox/104.0";
                 Req.UserAgent = GetRandomUserAgent();
                 Req.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-                //Req.Headers.Add("X-Powered-By", "PHP/5.3.17");
                 Req.Referer = url;
                 Req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8";
+                Req.Referer = @"https://www.amazon.com/kindle-dbs/comics-store/home";
                 Req.Headers.Add("Accept-Language", "en-US,en;q=0.5");
                 Req.KeepAlive = true;
                 WebResponse webresponse = Req.GetResponse();
@@ -159,7 +162,7 @@ namespace AmazonScrapper.Web
                 var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 13_2_1" };
                 string OSsystem = OS[rand.Next(OS.Length)];
 
-                var UATemplate = new Dictionary<string, string> 
+                var UATemplate = new Dictionary<string, string>
                 {
                     { "chrome", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36" },
                     { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.{patch}.{build}" },
