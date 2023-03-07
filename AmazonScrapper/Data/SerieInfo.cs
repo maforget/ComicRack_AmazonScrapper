@@ -40,7 +40,9 @@ namespace AmazonScrapper.Data
             Match regex3 = Regex.Match(text, @"Chapter\s+(?<number>\d+)\s+of\s+(?<count>\d+)\:\s+(?<title>.+)", RegexOptions.IgnoreCase);
             //Expecting Pattern: "Volume 24 of 24: One-Punch Man"
             Match regex4 = Regex.Match(text, @"Volume\s+(?<number>\d+)\s+of\s+(?<count>\d+)\:\s+(?<title>.+)", RegexOptions.IgnoreCase);
-            Match regex = regex1.Success ? regex1 : regex2.Success ? regex2 : regex3.Success ? regex3 : regex4;
+            //Excepting Pattern: "Related to: My Hero Academia"
+            Match regex5 = Regex.Match(text, @"Related\s+to\:\s*(?<title>(?:[^(]|$)+)(?:\((?<count>\d+)\sBooks\))*", RegexOptions.IgnoreCase);
+            Match regex = regex1.Success ? regex1 : regex2.Success ? regex2 : regex3.Success ? regex3 : regex4.Success ? regex4 : regex5;
 
             string serie = regex.Groups["title"]?.Value?.Trim();
             serieInfo.Serie = serie;
