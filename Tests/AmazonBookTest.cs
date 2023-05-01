@@ -205,5 +205,29 @@ namespace Tests
             Assert.AreEqual("Yusuke Murata", book.Penciller);
             Assert.AreEqual(6.49f, book.BookPrice);
         }
+
+        [TestMethod]
+        public void TestGetBook9()
+        {
+            var link = new AmazonLinkIssues("B09MSR9FW4");
+            var book = link.ScrapeData();
+
+            Assert.AreEqual("We Ride Titans #1", book.Title);
+            Assert.AreEqual(@"Kaiju hit hard. Family hits harder.Trying to keep your family from imploding is a tall order. Kit Hobbs is about to find out it's an even taller order when that family has been piloting the Titan that protects New Hyperion from kaiju for generations. Between a spiraling brother, a powder keg of a father, and a whole bunch of twenty-story monsters, she's got her work cut out for her.", book.Summary);
+            Assert.AreEqual("Scraped metadata from Amazon [B09MSR9FW4].", book.Notes);
+            Assert.AreEqual("We Ride Titans", book.Series);
+            Assert.AreEqual("1", book.Number);
+            Assert.AreEqual(12, book.Day);
+            Assert.AreEqual(1, book.Month);
+            Assert.AreEqual(2022, book.Year);
+            Assert.AreEqual("en", book.LanguageISO);
+            Assert.AreEqual("Vault Comics", book.Publisher);
+            Assert.AreEqual(4.3f, book.CommunityRating);
+            Assert.AreEqual(@"https://www.amazon.com/dp/B09MSR9FW4", book.Web);
+            Assert.AreEqual("Tres Dean", book.Writer);//Author
+            Assert.AreEqual("Nathan Gooden", book.CoverArtist);
+            Assert.AreEqual("Sebastian Piriz", book.Penciller);
+            Assert.AreEqual(1.99f, book.BookPrice);
+        }
     }
 }
