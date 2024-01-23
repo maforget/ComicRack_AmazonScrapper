@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+using System.Globalization;
 
 namespace AmazonScrapper.Data.Parser.Page
 {
@@ -24,7 +25,7 @@ namespace AmazonScrapper.Data.Parser.Page
                 return 0f;
 
             string rating = Regex.Match(input, @"[.\d]+", RegexOptions.IgnoreCase)?.Value?.Trim();
-            if (float.TryParse(rating, out float value))
+            if (float.TryParse(rating, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out float value))
                 return value;
 
             return 0f;
