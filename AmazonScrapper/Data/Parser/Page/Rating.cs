@@ -25,7 +25,7 @@ namespace AmazonScrapper.Data.Parser.Page
                 return 0f;
 
             string rating = Regex.Match(input, @"[.\d]+", RegexOptions.IgnoreCase)?.Value?.Trim();
-            if (float.TryParse(rating, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentCulture, out float value))
+            if (float.TryParse(rating, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out float value))
                 return value;
 
             return 0f;
