@@ -24,7 +24,7 @@ namespace AmazonScrapper.Data.Parser.Page
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            return Regex.Replace(text, @"\s+Read more", "", RegexOptions.IgnoreCase);//Remove Read more when it exists
+            return Regex.Replace(text, @"\s+Read more|\s+Read less", "", RegexOptions.IgnoreCase);//Remove Read more when it exists
         }
     }
 }
