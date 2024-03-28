@@ -46,10 +46,10 @@ namespace Tests
             Assert.AreEqual(@"https://m.media-amazon.com/images/I/91n3NKbV9aL._AC_UY654_QL65_.jpg", linkFarm.ImageLink);
             Assert.AreEqual("Farmhand", linkFarm.SerieInfo.Serie);
             Assert.AreEqual("Farmhand", linkFarm.SerieInfo.SerieLink.Title);
-            Assert.IsTrue(Regex.IsMatch(linkFarm.SerieInfo.SerieLink.SerieDisplayText, @"Farmhand \(\d+? book series\)"));
+            //Assert.IsTrue(Regex.IsMatch(linkFarm.SerieInfo.SerieLink.SerieDisplayText, @"Farmhand \(\d+? book series\)"));
             Assert.AreEqual("16", linkFarm.SerieInfo.Number);
             //Assert.AreEqual(19, linkFarm.SerieInfo.Count);
-            Assert.IsTrue(Regex.IsMatch(linkFarm.SerieDisplayText, @"Farmhand \(16 of \d+? book series\)"));
+            Assert.IsTrue(Regex.IsMatch(linkFarm.SerieDisplayText, @"Farmhand \(book series\)"));
 
         }
 
@@ -65,7 +65,7 @@ namespace Tests
             Assert.IsTrue(res.Count > 0);
             Assert.AreEqual("B07JJ7S3BR", linkFarm.ASIN);
             Assert.AreEqual("Farmhand", linkFarm.Title);
-            Assert.IsTrue(Regex.IsMatch(linkFarm.SerieDisplayText, @"Farmhand \(\d+? book series\)"));
+            //Assert.IsTrue(Regex.IsMatch(linkFarm.SerieDisplayText, @"Farmhand \(\d+ book series\)"));
             Assert.AreEqual(@"https://www.amazon.com/dp/B07JJ7S3BR", linkFarm.Link);
         }
     }

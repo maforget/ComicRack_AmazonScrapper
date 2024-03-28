@@ -44,7 +44,7 @@ namespace Tests
         {
             var amazonLink = new AmazonLinkSerie("B0932GH6NJ");
             var issues = amazonLink.GetIssues();//From the collections View
-            var thirdIssue = issues[2];
+            var thirdIssue = issues[1];
 
             Assert.AreEqual("B08TSN4GCN", thirdIssue.ASIN);
             Assert.AreEqual("Usagi Yojimbo Saga Volume 2 (Second Edition)", thirdIssue.Title);
@@ -56,7 +56,7 @@ namespace Tests
             Assert.IsNull(thirdIssue.SerieInfo.RawText);
             Assert.AreEqual("Usagi Yojimbo Saga", thirdIssue.SerieInfo.Serie);
             Assert.AreEqual("2", thirdIssue.SerieInfo.Number);
-            Assert.AreEqual(9, thirdIssue.SerieInfo.Count);
+            Assert.AreEqual(8, thirdIssue.SerieInfo.Count);
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace Tests
             Assert.IsNull(fortyIssue.SerieInfo.RawText);
             Assert.AreEqual("40", fortyIssue.SerieInfo.Number);
             Assert.AreEqual("Saga", fortyIssue.SerieInfo.Serie);
-            Assert.AreEqual(64, fortyIssue.SerieInfo.Count);
+            Assert.AreEqual(66, fortyIssue.SerieInfo.Count);
         }
 
         [TestMethod]

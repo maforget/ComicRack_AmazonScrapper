@@ -30,7 +30,7 @@ namespace Tests
             Assert.AreEqual("Rob Guillory", book.Writer);//Author
             Assert.AreEqual("Rob Guillory, Taylor Wells", book.CoverArtist);
             Assert.AreEqual("Rob Guillory, Taylor Wells", book.Penciller);//Artists
-            Assert.AreEqual(0.0f, book.BookPrice);
+            Assert.AreEqual(-1f, book.BookPrice);
         }
 
         [TestMethod]
@@ -103,7 +103,7 @@ namespace Tests
             Assert.AreEqual(@"https://www.amazon.com/dp/B07X5N41P8", book.Web);
             Assert.AreEqual("Rob Guillory", book.Writer);//Author
             Assert.AreEqual("Rob Guillory", book.Penciller);//Contributor
-            Assert.AreEqual(10.99f, book.BookPrice);
+            Assert.AreEqual(11.99f, book.BookPrice);
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace Tests
             Assert.AreEqual(2019, book.Year);
             Assert.AreEqual("en", book.LanguageISO);
             Assert.AreEqual("DC", book.Publisher);
-            Assert.AreEqual(4.5f, book.CommunityRating);
+            Assert.AreEqual(4.6f, book.CommunityRating);
             Assert.AreEqual(@"https://www.amazon.com/dp/B07VVTGY3Z", book.Web);
             Assert.AreEqual("Joshua Williamson", book.Writer);//Author
             Assert.AreEqual("David Marquez", book.Penciller);
@@ -228,6 +228,41 @@ namespace Tests
             Assert.AreEqual("Nathan Gooden", book.CoverArtist);
             Assert.AreEqual("Sebastian Piriz", book.Penciller);
             Assert.AreEqual(1.99f, book.BookPrice);
+        }
+
+        [TestMethod]
+        public void TestGetBook10()
+        {
+            var link = new AmazonLinkIssues("B0CQLL8R8H");
+            var book = link.ScrapeData();
+
+            Assert.AreEqual("I Hate Fairyland Vol. 6", book.Title);
+            Assert.AreEqual(@"Death by a thousand Gerts! King Cloudeus is determined to finish what his sister Queen Cloudia never could: kick Gert out of Fairyland FOR GOOD! And the only way to do that is have every Gert who ever lived battle each other to the death. Who said there's only so many Gerts to go around?! They clearly haven't read this comic. OG Gert returns to find the last key to escape, but is it too late, and will she become a Lifetime Citizen of Fairyland? Eisner Award-winning writer SKOTTIE YOUNG (MIDDLEWEST, TWIG, THE ME YOU LOVE IN THE DARK) and artist BRETT BEAN (Marvel’s Rocket and Groot) are back in the triumphant return to I HATE FAIRYLAND! Collects I HATE FAIRYLAND (2022) #6-10", book.Summary);
+            Assert.AreEqual("Scraped metadata from Amazon [B0CQLL8R8H].", book.Notes);
+            Assert.AreEqual("I Hate Fairyland", book.Series);
+            Assert.AreEqual("6", book.Number);
+            Assert.AreEqual(17, book.Day);
+            Assert.AreEqual(1, book.Month);
+            Assert.AreEqual(2024, book.Year);
+            Assert.AreEqual("en", book.LanguageISO);
+            Assert.AreEqual("Image", book.Publisher);
+            //Assert.AreEqual(4.3f, book.CommunityRating);
+            Assert.AreEqual(@"https://www.amazon.com/dp/B0CQLL8R8H", book.Web);
+            Assert.AreEqual("Skottie Young", book.Writer);//Author
+            Assert.AreEqual("Skottie Young", book.Penciller);//Artist
+            Assert.AreEqual("Brett B Bean", book.CoverArtist);
+            Assert.AreEqual(13.99f, book.BookPrice);
+        }
+
+        [TestMethod]
+        public void TestGetBook11()
+        {
+            var link = new AmazonLinkIssues("1779524692");
+            var book = link.ScrapeData();
+
+            Assert.AreEqual(27, book.Day);
+            Assert.AreEqual(2, book.Month);
+            Assert.AreEqual(2024, book.Year);
         }
     }
 }

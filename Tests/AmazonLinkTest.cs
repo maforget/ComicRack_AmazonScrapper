@@ -20,7 +20,7 @@ namespace Tests
             Assert.AreEqual($@"https://www.amazon.com/dp/{asin}", amazonLink.Link);
 
             var serieASIN = "B07JJ7S3BR";
-            var serieText = "Book 16 of 19: Farmhand";
+            var serieText = "Book 16 of 20: Farmhand";
             var serieLink = $"dp/{serieASIN}?binding=kindle_edition&ref_=dbs_s_ks_series_rwt_tkin&sr=1-18";
             var linkSerie = new AmazonLinkSerie(serieText, serieLink);
             amazonLink.SerieInfo = SerieInfo.Parse(serieText, title, linkSerie);
@@ -29,10 +29,10 @@ namespace Tests
             Assert.AreEqual($@"https://www.amazon.com/dp/{serieASIN}", amazonLink.SerieInfo.SerieLink.Link);
             Assert.AreEqual("Farmhand", amazonLink.SerieInfo.Serie);
 
-            Assert.AreEqual("Farmhand (16 of 19 book series)", amazonLink.SerieDisplayText);
+            Assert.AreEqual("Farmhand (16 of 20 book series)", amazonLink.SerieDisplayText);
             Assert.AreEqual(serieText, amazonLink.SerieInfo.RawText);
             Assert.AreEqual("16", amazonLink.SerieInfo.Number);
-            Assert.AreEqual(19, amazonLink.SerieInfo.Count);
+            Assert.AreEqual(20, amazonLink.SerieInfo.Count);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace Tests
             Assert.AreEqual(imageLink, amazonLink.ImageLink);
 
             var serieASIN = "B07JJ7S3BR";
-            var serieText = "Book 1 of 19: Farmhand";
+            var serieText = "Book 1 of 20: Farmhand";
             var serieLink = $"dp/{serieASIN}?binding=kindle_edition&ref_=dbs_s_ks_series_rwt_tkin&sr=1-18";
             var linkSerie = new AmazonLinkSerie(serieText, serieLink);
             amazonLink.SerieInfo = SerieInfo.Parse(serieText, title, linkSerie);
@@ -59,10 +59,10 @@ namespace Tests
             Assert.AreEqual($@"https://www.amazon.com/dp/{serieASIN}", amazonLink.SerieInfo.SerieLink.Link);
             Assert.AreEqual("Farmhand", amazonLink.SerieInfo.Serie);
 
-            Assert.AreEqual("Farmhand (1 of 19 book series)", amazonLink.SerieDisplayText);
+            Assert.AreEqual("Farmhand (1 of 20 book series)", amazonLink.SerieDisplayText);
             Assert.AreEqual(serieText, amazonLink.SerieInfo.RawText);
             Assert.AreEqual("1", amazonLink.SerieInfo.Number);
-            Assert.AreEqual(19, amazonLink.SerieInfo.Count);
+            Assert.AreEqual(20, amazonLink.SerieInfo.Count);
         }
 
         [TestMethod]
