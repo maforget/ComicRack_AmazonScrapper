@@ -23,12 +23,15 @@ namespace AmazonScrapper.Data.Parser.Page
         /// <returns>the cover link</returns>
         public override object Parse()
         {
-            var text = Node.SelectSingleNode(".//img[@id='ebooksImgBlkFront']")?.Attributes["data-a-dynamic-image"]?.Value?.Trim();
+            var text = Node.SelectSingleNode(".//img[@id='landingImage']")?.Attributes["src"]?.Value?.Trim();
 
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
 
-            return Regex.Match(text, @"(https[^]_""[}{]+\.jpg)", RegexOptions.IgnoreCase)?.Groups[1]?.Value;
+            //Strip unwanted strings from the url, to get the high-res iamge
+            string output = Regex.Replace(text, @"(https[^_]+)_[^\.]+\.(.+)", "$1$2", RegexOptions.IgnoreCase);
+
+            return string.IsNullOrEmpty(output) ? text : output;
         }
     }
 }
