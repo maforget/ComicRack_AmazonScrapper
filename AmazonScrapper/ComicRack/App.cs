@@ -32,7 +32,8 @@ namespace AmazonScrapper.ComicRack
         public void SetCustomBookThumbnail(Book currentBook, Image page)
         {
             //Set the book cover thumbnail
-            InvokeMethod("SetCustomBookThumbnail", new object[] { currentBook.book, page });
+            if (page != null)
+                InvokeMethod("SetCustomBookThumbnail", new object[] { currentBook.book, page });
         }
     }
 }
