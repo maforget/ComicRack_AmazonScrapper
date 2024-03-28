@@ -214,9 +214,12 @@ namespace AmazonScrapper.Data
 
             //Date
             DateTime pubDate = parser.Get<Date>().Result;
-            bookInfo.year = pubDate.Year;
-            bookInfo.month = pubDate.Month;
-            bookInfo.day = pubDate.Day;
+            if (pubDate > DateTime.MinValue)
+            {
+                bookInfo.year = pubDate.Year;
+                bookInfo.month = pubDate.Month;
+                bookInfo.day = pubDate.Day;
+            }
 
             return bookInfo;
         }
