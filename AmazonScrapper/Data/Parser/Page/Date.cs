@@ -18,11 +18,13 @@ namespace AmazonScrapper.Data.Parser.Page
         public override object Parse()
         {
             var text = Node.SelectSingleNode(".//div[@id='detailBullets_feature_div']//span[contains(text(), 'Publication')]/following::span")?.InnerText?.Trim();
+            var text2 = Node.SelectSingleNode(".//div[@id='rpi-attribute-book_details-publication_date']//div[contains(@class, 'rpi-attribute-value')]/span")?.InnerText?.Trim();
+            var dateString = text ?? text2;
 
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(dateString))
                 return DateTime.MinValue;
 
-            if (DateTime.TryParse(text, out DateTime date))
+            if (DateTime.TryParse(dateString, out DateTime date))
                 return date;
 
             return DateTime.MinValue;
