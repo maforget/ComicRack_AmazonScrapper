@@ -225,8 +225,6 @@ namespace AmazonScrapper.Web
                     };
                     userAgent = UATemplate[randomBroswer];
                 }
-
-                SimpleLogger.Info(userAgent);
             }
 
             return userAgent;
