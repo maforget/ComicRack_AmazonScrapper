@@ -208,13 +208,13 @@ namespace AmazonScrapper.Web
                 var browserType = new string[] { "chrome", "edge", "firefox" };
                 lock (syncLock)
                 {
-                    int version = rand.Next(103, 110);
+                    int version = rand.Next(103, 126);
                     string finalVersion = version.ToString();
-                    int patch = rand.Next(1264, 1660);
+                    int patch = rand.Next(1264, 2535);
                     int build = rand.Next(10, 80);
                     string randomBroswer = browserType[rand.Next(browserType.Length)];
 
-                    var OS = new string[] { "Windows NT 10.0; Win64; x64", "X11; Linux x86_64", "Macintosh; Intel Mac OS X 13_2_1" };
+                    var OS = new string[] { "Windows NT 10.0; Win64; x64", "Macintosh; Intel Mac OS X 13_2_1" };
                     string OSsystem = OS[rand.Next(OS.Length)];
 
                     var UATemplate = new Dictionary<string, string>
@@ -225,6 +225,8 @@ namespace AmazonScrapper.Web
                     };
                     userAgent = UATemplate[randomBroswer];
                 }
+
+                SimpleLogger.Info(userAgent);
             }
 
             return userAgent;
