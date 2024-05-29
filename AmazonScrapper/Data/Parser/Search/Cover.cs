@@ -23,7 +23,7 @@ namespace AmazonScrapper.Data.Parser.Search
         /// <returns>the cover link</returns>
         public override object Parse()
         {
-            string[] imageLink = Node.SelectSingleNode(@".//img[@class='s-image']")?.Attributes["srcset"]
+            string[] imageLink = Node.SelectSingleNode(@".//img[contains(@class, 's-image')]")?.Attributes["srcset"]
                 .Value.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 
             if (imageLink != null)
