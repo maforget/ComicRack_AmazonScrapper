@@ -26,13 +26,18 @@ namespace AmazonScrapper.Data.Parser.Search
             string[] imageLink = Node.SelectSingleNode(@".//img[@class='s-image']")?.Attributes["srcset"]
                 .Value.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
 
-            //Change the URL from webp to jpg, when using the chrome user agent.
-            for (int i = 0; i < imageLink.Length; i++)
+            if (imageLink != null)
             {
-                imageLink[i] = Regex.Replace(imageLink[i], "/W/WEBP.+?/images|FMwebp_", "", RegexOptions.IgnoreCase);
+                //Change the URL from webp to jpg, when using the chrome user agent.
+                for (int i = 0; i < imageLink.Length; i++)
+                {
+                    imageLink[i] = Regex.Replace(imageLink[i], "/W/WEBP.+?/images|FMwebp_", "", RegexOptions.IgnoreCase);
+                }
+
+                return imageLink.Length == 0 ? string.Empty : imageLink[imageLink.Length - 1].Split(' ')[0]; 
             }
 
-            return imageLink.Length == 0 ? string.Empty : imageLink[imageLink.Length - 1].Split(' ')[0];
+            return default;
         }
     }
 }
