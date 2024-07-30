@@ -267,12 +267,12 @@ ren "%25UserProfile%25\Desktop\$(TargetName).zip" $(TargetName).crplugin
 )
 
 if $(ConfigurationName) == DEV (
-xcopy /s /y "$(TargetDir)*.exe" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
-xcopy /s /y "$(TargetDir)*.pdb" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
-xcopy /s /y "$(TargetDir)*.png" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
-xcopy /s /y "$(TargetDir)*.dll" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
-xcopy /s /y "$(SolutionDir)Python\*.py" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
-xcopy /s /y "$(SolutionDir)Python\*.ini" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(TargetDir)*.exe" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(TargetDir)*.pdb" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(TargetDir)*.png" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(TargetDir)*.dll" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(SolutionDir)Python\*.py" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
+xcopy /s /y "$(SolutionDir)Python\*.ini" "$(SolutionDir)..\ComicRack\ComicRack\bin\Release\net48\Data\Scripts\Amazon Scrapper\"
 )</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
