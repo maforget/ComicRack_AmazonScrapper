@@ -137,6 +137,7 @@
       <DependentUpon>frmProgress.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugin.cs" />
+    <Compile Include="Tools\SimpleLogger.cs" />
     <Compile Include="Tools\FormThreadExtensions.cs" />
     <Compile Include="Tools\Reflections.cs" />
     <Compile Include="Tools\SafeInvokeExtensions.cs" />
