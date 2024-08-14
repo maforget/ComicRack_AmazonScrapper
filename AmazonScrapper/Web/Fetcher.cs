@@ -208,7 +208,9 @@ namespace AmazonScrapper.Web
                 var browserType = new string[] { "chrome", "edge", "firefox" };
                 lock (syncLock)
                 {
-                    int version = rand.Next(103, 126);
+                    //Amazon seems to block version older than 2 years
+                    int currentVersion = CalculateCurrentMajorVersion();
+                    int version = rand.Next(currentVersion - 16, currentVersion + 3);
                     string finalVersion = version.ToString();
                     int patch = rand.Next(1264, 2535);
                     int build = rand.Next(10, 80);
@@ -229,5 +231,19 @@ namespace AmazonScrapper.Web
 
             return userAgent;
         }
-    }
+
+		private int CalculateCurrentMajorVersion()
+		{
+            //This is based on Firefox releases, Chrome version pretty much matches those of Firefox
+            DateTime baseDate = new DateTime(2023, 07, 04);
+            int baseVersion = 115;
+            int numOfWeeksPerVersion = 4;
+
+            TimeSpan timeElapsedSince = DateTime.Now.Subtract(baseDate);
+            double weeksElapsed = timeElapsedSince.TotalDays / 7;
+
+            int numOfVersionBumps = (int)Math.Round(weeksElapsed / numOfWeeksPerVersion);
+            return baseVersion + numOfVersionBumps;
+		}
+	}
 }
