@@ -10,7 +10,7 @@ namespace AmazonScrapper.Tools
 {
     public class Collection<T> : IEnumerable<T>
     {
-        private List<T> list;
+        protected List<T> list { get; set; }
 
         public Collection(object[] param)
         {
