@@ -48,8 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ComicRack.Engine">
-      <HintPath>..\..\ComicRack\ComicRack\bin\Debug\ComicRack.Engine.dll</HintPath>
+    <Reference Include="ComicRack.Engine, Version=1.0.8852.23472, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ComicRack\ComicRack\bin\Debug\net48\ComicRack.Engine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
