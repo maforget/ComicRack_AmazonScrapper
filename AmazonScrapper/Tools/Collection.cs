@@ -31,7 +31,7 @@ namespace AmazonScrapper.Tools
 
         public U Get<U>() where U : class
         {
-            return list.FirstOrDefault(x => x.GetType() == typeof(U)) as U;
+            return list.FirstOrDefault(x => x.GetType() == typeof(U) || x.GetType().IsSubclassOf(typeof(U))) as U;
         }
 
         //protected T Get(string type)
