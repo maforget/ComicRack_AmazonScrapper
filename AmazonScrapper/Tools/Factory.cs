@@ -36,7 +36,7 @@ namespace AmazonScrapper.Tools
                 //AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes())//Get though all the loaded files, slower
                 .Where(myType => myType.IsClass && !myType.IsAbstract && t.IsAssignableFrom(myType) && myType != t))
             {
-                objects.Add((T)Activator.CreateInstance(type, constructorArgs));
+                objects.Add((T)Activator.CreateInstance(type, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public, null, constructorArgs, null));
             }
             return objects;
         }
