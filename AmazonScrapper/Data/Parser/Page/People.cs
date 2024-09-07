@@ -35,6 +35,17 @@ namespace AmazonScrapper.Data.Parser.Page
 
                 foreach (var job in jobsList)
                 {
+					IJob people = ParseJobs(jobsCollection, job);
+					people.Add(authorName);
+				}
+			}
+
+            return jobsCollection;
+
+        }
+
+		protected virtual IJob ParseJobs(JobsCollection jobsCollection, string job)
+		{
                     IJob people = null;
                     switch (job)
                     {
@@ -63,17 +74,11 @@ namespace AmazonScrapper.Data.Parser.Page
                             people = jobsCollection.Get<Letterer>();
                             break;
                         default:
-                            people = jobsCollection.Get<Job>();
+                            people = jobsCollection.Get<Writer>();
                             break;
-
                     }
 
-                    people.Add(authorName);
-                }
-            }
-
-            return jobsCollection;
-
+			return people;
         }
 
         private static List<string> ParseJobs(string jobs)
