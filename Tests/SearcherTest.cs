@@ -3,10 +3,11 @@ using AmazonScrapper.Web;
 using AmazonScrapper.Data;
 using System;
 using System.Text.RegularExpressions;
+using AmazonScrapper.Web.Searcher;
 
 namespace Tests
 {
-    [TestClass]
+	[TestClass]
     public class SearcherTest
     {
         [TestMethod]
@@ -28,7 +29,12 @@ namespace Tests
             string searchURLone = @"https://www.amazon.com/s?k=one+piece&i=comics-manga&s=date-desc-rank";
             Assert.AreEqual(searchURLone, searcherOne.SearchURL);
             Assert.AreEqual("one piece", searcherOne.SearchTerm);
-        }
+
+            var searcherFr = Searcher.Create("Achille Talon", false, false, TLDs.fr);
+			string searchURLfr = @"https://www.amazon.fr/s?k=Achille+Talon&i=stripbooks";
+			Assert.AreEqual(searchURLfr, searcherFr.SearchURL);
+			Assert.AreEqual("Achille Talon", searcherFr.SearchTerm);
+		}
 
         [TestMethod]
         public void TestGetResults()
@@ -36,7 +42,7 @@ namespace Tests
             var searcherFarm = Searcher.Create("Farmhand #16", false, true);
             var res = searcherFarm.GetResults();
 			Assert.IsTrue(res.Count > 0);
-            var linkFarm = res[0] as AmazonLinkIssues;
+			var linkFarm = res[0] as AmazonLinkIssues;
 
             Assert.IsNotNull(res);
             Assert.IsInstanceOfType(linkFarm, typeof(AmazonLinkIssues));
@@ -54,7 +60,24 @@ namespace Tests
 
         }
 
-        [TestMethod]
+		[TestMethod]
+		public void TestGetResultsFR()
+		{
+			var searcherFarm = Searcher.Create("Les Petits Marsus et la grande ville", false, true, TLDs.fr);
+			var res = searcherFarm.GetResults();
+            Assert.IsTrue(res.Count > 0);
+			var link = res[0] as AmazonLinkIssues;
+
+			Assert.IsNotNull(res);
+			Assert.IsInstanceOfType(link, typeof(AmazonLinkIssues));
+			Assert.IsTrue(res.Count > 0);
+			Assert.AreEqual("2374081044", link.ASIN);
+			Assert.AreEqual("Les Petits Marsus et la grande ville", link.Title);
+			Assert.AreEqual(@"https://www.amazon.fr/dp/2374081044", link.Link);
+			Assert.AreEqual(@"https://m.media-amazon.com/images/I/91zqKa82x+L._AC_UY654_QL65_.jpg", link.ImageLink);
+		}
+
+		[TestMethod]
         public void TestGetResultsSerie()
         {
             var searcherFarm = Searcher.Create("Farmhand #16", false, true);

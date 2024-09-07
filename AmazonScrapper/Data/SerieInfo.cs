@@ -62,6 +62,8 @@ namespace AmazonScrapper.Data
 			    @"Volume\s+(?<number>\d+)\s+of\s+(?<count>\d+)\:\s+(?<title>.+)",
 			    //Excepting Pattern: "Related to: My Hero Academia"
 			    @"Related\s+to\:\s*(?<title>(?:[^(]|$)+)(?:\((?<count>\d+)\sBooks\))*",
+                //Expecting Pattern: "Livre 4 sur 14 : Achille Talon - L'Intégrale "
+			    @"Livre\s+(?<number>\d+)\s+sur\s+(?<count>\d+)\s*\:\s+(?<title>.+)",
             };
 
 			Match regex = null;

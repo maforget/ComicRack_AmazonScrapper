@@ -20,8 +20,11 @@ namespace AmazonScrapper.Web
         public Fetcher()
         {
             cookieContainer = new CookieContainer();
-            cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
-            userAgent = string.Empty;
+            cookieContainer.Add(new Cookie("x-amz-captcha-1", string.Empty) { Domain = ".amazon.fr" });
+            cookieContainer.Add(new Cookie("x-amz-captcha-2", string.Empty) { Domain = ".amazon.fr" });
+			cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.fr" });
+			cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
+			userAgent = string.Empty;
         }
 
         static Fetcher _instance;
@@ -51,7 +54,7 @@ namespace AmazonScrapper.Web
                     return null;
 
                 var html = ReadURL(url, ct);
-                if (html.Contains("you're not a robot"))
+                if (html.Contains("you're not a robot") || html.Contains("vous n'êtes pas un robot"))
                 {
                     CaptchaDetected();
                     return null;

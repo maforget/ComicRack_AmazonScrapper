@@ -17,6 +17,7 @@ namespace AmazonScrapper.Web
 {
 	public enum TLDs
 	{
-		com
+		com,
+		fr
 	}
 }

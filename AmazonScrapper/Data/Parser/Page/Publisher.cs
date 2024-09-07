@@ -30,5 +30,15 @@ namespace AmazonScrapper.Data.Parser.Page
 
         protected virtual string GetPublisherText() => "Publisher";
 	}
-    }
+
+	public class Publisher_Fr : Publisher
+	{
+		public Publisher_Fr(HtmlNode node) : base(node)
+		{
+		}
+
+		public override TLDs TLD => TLDs.fr;
+
+        protected override string GetPublisherText() => "Éditeur";
+	}
 }

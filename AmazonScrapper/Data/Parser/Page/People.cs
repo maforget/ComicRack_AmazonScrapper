@@ -34,7 +34,7 @@ namespace AmazonScrapper.Data.Parser.Page
                 var jobsList = ParseJobs(jobs);
 
                 foreach (var job in jobsList)
-                {
+				{
 					IJob people = ParseJobs(jobsCollection, job);
 					people.Add(authorName);
 				}
@@ -46,42 +46,42 @@ namespace AmazonScrapper.Data.Parser.Page
 
 		protected virtual IJob ParseJobs(JobsCollection jobsCollection, string job)
 		{
-                    IJob people = null;
-                    switch (job)
-                    {
-                        case "Author":
-                            people = jobsCollection.Get<Writer>();
-                            break;
-                        case "Cover Art":
-                            people = jobsCollection.Get<CoverArtist>();
-                            break;
-                        case "Artist":
-                        case "Penciller":
-                        case "Illustrator":
-                        case "Contributor":
-                            people = jobsCollection.Get<Penciller>();
-                            break;
-                        case "Colorist":
-                            people = jobsCollection.Get<Colorist>();
-                            break;
-                        case "Inker":
-                            people = jobsCollection.Get<Inker>();
-                            break;
-                        case "Editor":
-                            people = jobsCollection.Get<Editor>();
-                            break;
-                        case "Letterer":
-                            people = jobsCollection.Get<Letterer>();
-                            break;
-                        default:
-                            people = jobsCollection.Get<Writer>();
-                            break;
-                    }
+			IJob people = null;
+			switch (job)
+			{
+				case "Author":
+					people = jobsCollection.Get<Writer>();
+					break;
+				case "Cover Art":
+					people = jobsCollection.Get<CoverArtist>();
+					break;
+				case "Artist":
+				case "Penciller":
+				case "Illustrator":
+				case "Contributor":
+					people = jobsCollection.Get<Penciller>();
+					break;
+				case "Colorist":
+					people = jobsCollection.Get<Colorist>();
+					break;
+				case "Inker":
+					people = jobsCollection.Get<Inker>();
+					break;
+				case "Editor":
+					people = jobsCollection.Get<Editor>();
+					break;
+				case "Letterer":
+					people = jobsCollection.Get<Letterer>();
+					break;
+				default:
+					people = jobsCollection.Get<Writer>();
+					break;
+			}
 
 			return people;
-        }
+		}
 
-        private static List<string> ParseJobs(string jobs)
+		private static List<string> ParseJobs(string jobs)
         {
             List<string> listJobs = new List<string>();
 
@@ -103,4 +103,43 @@ namespace AmazonScrapper.Data.Parser.Page
 
         }
     }
+
+	public class People_Fr : People
+	{
+		public People_Fr(HtmlNode node) : base(node)
+		{
+		}
+
+		public override TLDs TLD => TLDs.fr;
+
+		protected override IJob ParseJobs(JobsCollection jobsCollection, string job)
+		{
+			IJob people = null;
+			switch (job)
+			{
+				case "Auteur":
+					people = jobsCollection.Get<Writer>();
+					break;
+				case "Illustrations":
+				case "Dessins":
+				case "Avec la contribution de":
+					people = jobsCollection.Get<Penciller>();
+					break;
+				case "Couleurs":
+					people = jobsCollection.Get<Colorist>();
+					break;
+				case "Encreur":
+					people = jobsCollection.Get<Inker>();
+					break;
+				case "Rédacteur":
+					people = jobsCollection.Get<Editor>();
+					break;
+				default:
+					people = jobsCollection.Get<Writer>();
+					break;
+			}
+
+			return people;
+		}
+	}
 }
