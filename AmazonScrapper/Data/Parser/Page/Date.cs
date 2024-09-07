@@ -24,10 +24,16 @@ namespace AmazonScrapper.Data.Parser.Page
             if (string.IsNullOrEmpty(dateString))
                 return DateTime.MinValue;
 
-            if (DateTime.TryParse(dateString, out DateTime date))
+			if (TryParseDate(dateString, out DateTime date))
                 return date;
 
             return DateTime.MinValue;
         }
+
+		protected virtual bool TryParseDate(string dateString, out DateTime date)
+		{
+			return DateTime.TryParse(dateString, out date);
+		}
+	}
     }
 }
