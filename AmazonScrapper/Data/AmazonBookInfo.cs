@@ -169,7 +169,7 @@ namespace AmazonScrapper.Data
 
         #endregion
 
-        public static AmazonBookInfo GetAmazonBookInfo(AmazonLinkIssues link, CancellationToken ct = default)
+        public static AmazonBookInfo GetAmazonBookInfo(AmazonLinkIssues link, TLDs tld = TLDs.com, CancellationToken ct = default)
         {
             AmazonBookInfo bookInfo = new AmazonBookInfo();
 
@@ -183,7 +183,7 @@ namespace AmazonScrapper.Data
             if (node == null)
                 return null;
 
-            var parser = new ParserManager<IParserPage>(node);
+            var parser = new ParserManager<IParserPage>(node, tld);
             bookInfo.cover = parser.Get<Cover>().Result;
             bookInfo.title = parser.Get<Title>().Result;
             bookInfo.summary = parser.Get<Summary>().Result;

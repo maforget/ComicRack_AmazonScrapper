@@ -1,13 +1,16 @@
-﻿using HtmlAgilityPack;
+﻿using AmazonScrapper.Web;
+using HtmlAgilityPack;
 using System;
+using System.Windows.Documents;
 
 namespace AmazonScrapper.Data.Parser
 {
-    public abstract class ParserBase : IParser
+    public abstract class ParserBase : IParser, IDomain
     {
         public HtmlNode Node { get; }
+		public virtual TLDs TLD => TLDs.com;
 
-        public ParserBase(HtmlNode node)
+		public ParserBase(HtmlNode node)
         {
             Node = node;
         }

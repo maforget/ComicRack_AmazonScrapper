@@ -84,6 +84,7 @@
     <Compile Include="ComicRack\App.cs" />
     <Compile Include="ComicRack\Book.cs" />
     <Compile Include="ComicRack\BookCollection.cs" />
+    <Compile Include="Data\BaseManager.cs" />
     <Compile Include="Data\Parser\Page\BookPrice.cs" />
     <Compile Include="Data\Parser\Collection\Cover.cs" />
     <Compile Include="Data\Parser\Collection\Link.cs" />
@@ -182,7 +183,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web\Searcher.cs" />
+    <Compile Include="Web\IDomain.cs" />
+    <Compile Include="Web\Searcher\ISearcher.cs" />
+    <Compile Include="Web\Searcher\Searcher.cs" />
+    <Compile Include="Web\DomainManager.cs" />
+    <Compile Include="Web\TLDs.cs" />
     <Compile Include="Web\Utility.cs" />
     <EmbeddedResource Include="Dialog\frmConfig.resx">
       <DependentUpon>frmConfig.cs</DependentUpon>

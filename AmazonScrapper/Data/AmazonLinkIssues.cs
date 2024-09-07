@@ -7,19 +7,20 @@ using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Threading;
 using AmazonScrapper.Data.Parser;
+using AmazonScrapper.Web;
 
 namespace AmazonScrapper.Data
 {
-    public class AmazonLinkIssues : AmazonLink
+	public class AmazonLinkIssues : AmazonLink
     {
-        public AmazonLinkIssues(string asin, string title = "")
-            : base(asin, title, string.Empty, string.Empty)
+        public AmazonLinkIssues(string asin, string title = "", TLDs tld = TLDs.com)
+            : base(asin, title, string.Empty, string.Empty, tld)
         {
 
         }
 
-        public AmazonLinkIssues(string title, string link, string imageLink)
-           : base(title, link, imageLink)
+        public AmazonLinkIssues(string title, string link, string imageLink, TLDs tld = TLDs.com)
+           : base(title, link, imageLink, tld)
         {
 
         }
@@ -28,6 +29,6 @@ namespace AmazonScrapper.Data
 
         public override string SerieDisplayText => SerieInfo == null ? string.Empty : SerieInfo.DisplayText;
 
-        public AmazonBookInfo ScrapeData(CancellationToken ct = default) => AmazonBookInfo.GetAmazonBookInfo(this, ct);
+        public AmazonBookInfo ScrapeData(CancellationToken ct = default) => AmazonBookInfo.GetAmazonBookInfo(this, TLD, ct);
     }
 }

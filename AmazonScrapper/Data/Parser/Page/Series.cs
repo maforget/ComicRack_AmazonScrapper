@@ -20,7 +20,7 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var parser = new ParserManager<IParserPage>(Node);
+            var parser = new ParserManager<IParserPage>(Node, TLD);
             var title = parser.Get<Title>().Result;
             var number = Number.ParseFromTitle(title);
 
@@ -28,7 +28,7 @@ namespace AmazonScrapper.Data.Parser.Page
             var serieLink = Node.SelectSingleNode(".//div[@id='seriesBulletWidget_feature_div']//a")?.Attributes["href"]?.Value?.Trim();
             var serieText = Node.SelectSingleNode(".//div[@id='seriesBulletWidget_feature_div']//a")?.InnerText?.Trim().DecodeHTML();
             var cover = parser.Get<Cover>().Result;
-            var amazonlinkSerie = new AmazonLinkSerie(serieText, serieLink, cover);
+            var amazonlinkSerie = new AmazonLinkSerie(serieText, serieLink, cover, TLD);
             var serieInfo = SerieInfo.Parse(serieText, title, amazonlinkSerie);
 
             //ALT Series Location in case it doesn't have the header ex: https://www.amazon.com/dp/B08TSWQSZP
@@ -39,7 +39,7 @@ namespace AmazonScrapper.Data.Parser.Page
             var altSerieImage = altSerieNode?.SelectSingleNode(".//img[@id='product-image']")?.Attributes["src"]?.Value?.Trim();
             var altSerieText = altSerieNode?.SelectSingleNode(".//a[@class='a-link-normal']/span")?.InnerText?.Trim();
             var altSerieLink = altSerieNode?.SelectSingleNode(".//a[@class='a-link-normal']")?.Attributes["href"]?.Value?.Trim();
-            var altAmazonLinkSerie = new AmazonLinkSerie(altSerieText, altSerieLink, altSerieImage);
+            var altAmazonLinkSerie = new AmazonLinkSerie(altSerieText, altSerieLink, altSerieImage, TLD);
             var altSerieInfo = SerieInfo.Parse(number, altSerieText, altSerieCount, altAmazonLinkSerie);
 
             return string.IsNullOrEmpty(serieText) ? altSerieInfo : serieInfo;

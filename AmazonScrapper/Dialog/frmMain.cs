@@ -13,10 +13,11 @@ using AmazonScrapper.Tools;
 using System.Threading;
 using AmazonScrapper.Settings;
 using System.Diagnostics;
+using AmazonScrapper.Web.Searcher;
 
 namespace AmazonScrapper.Dialog
 {
-    public partial class frmMain : Form
+	public partial class frmMain : Form
     {
         #region Properties
         private bool doSearchOnOpen = false;
@@ -25,7 +26,8 @@ namespace AmazonScrapper.Dialog
         public string SearchNumber { get; private set; }
         public bool SortByDate { get; private set; }
         public bool StrictSearch { get; private set; } = false;
-        public bool GroupBySerie { get; private set; }
+        public TLDs Domain { get; private set; } = TLDs.com;
+		public bool GroupBySerie { get; private set; }
         public AmazonBookInfo BookInfo { get; private set; }
         public CancellationToken Token { get; }
 
@@ -39,7 +41,8 @@ namespace AmazonScrapper.Dialog
             InitializeComponent();
             SetConfigItems();
             SetTitleBar();
-        }
+			CreateDomainList();
+		}
 
         public frmMain(string searchText, string searchNumber, CancellationToken token = default)
             : this()
@@ -50,7 +53,7 @@ namespace AmazonScrapper.Dialog
             Token = token;
             Token.Register(() => this.SafeInvoke(x => x.Close()));
 
-            if (Token.IsCancellationRequested)
+			if (Token.IsCancellationRequested)
                 Token.ThrowIfCancellationRequested();
         }
         #endregion
@@ -67,7 +70,7 @@ namespace AmazonScrapper.Dialog
                 {
                     using (HourGlass hourglass = new HourGlass(this))
                     {
-                        Searcher searcher = new Searcher(SearchText, SortByDate, StrictSearch);
+                        ISearcher searcher = Searcher.Create(SearchText, SortByDate, StrictSearch, Domain);
                         Results = searcher.GetResults(Token);
                         ChangeGrouping();
                     }
@@ -176,10 +179,15 @@ namespace AmazonScrapper.Dialog
 
             ChangeGrouping();
         }
-        #endregion
 
-        #region Form Events
-        protected virtual void OnBookChosen(EventArgs e)
+		private void cbDomains_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			Domain = cbDomains.SelectedIndex < 0 ? TLDs.com : (TLDs)cbDomains.SelectedIndex;
+		}
+		#endregion
+
+		#region Form Events
+		protected virtual void OnBookChosen(EventArgs e)
         {
             BookChosen?.Invoke(this, e);
         }
@@ -270,7 +278,16 @@ namespace AmazonScrapper.Dialog
             var title = Tools.Version.GetCurrentVersionInfo();
             this.Text = $"{title} - {this.Text}";
         }
-        #endregion
 
-    }
+		private void CreateDomainList()
+		{
+			var domainList = new List<string>();
+			foreach (TLDs t in Enum.GetValues(typeof(TLDs)))
+				domainList.Add($"amazon.{t}");
+
+			cbDomains.Items.AddRange(domainList.ToArray());
+			cbDomains.SelectedIndex = 0;
+		}
+		#endregion
+	}
 }

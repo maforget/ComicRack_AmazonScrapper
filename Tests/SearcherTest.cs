@@ -12,19 +12,19 @@ namespace Tests
         [TestMethod]
         public void TestURL()
         {
-            var searcherFarm = new Searcher("Farmhand #18", false, true);
+            var searcherFarm = Searcher.Create("Farmhand #18", false, true);
             string searchURLfarm = @"https://www.amazon.com/s?k=""Farmhand+%2318""&i=comics-manga";
             Assert.AreEqual(searchURLfarm, searcherFarm.SearchURL);
             Assert.AreEqual("Farmhand #18", searcherFarm.SearchTerm);
             Assert.AreEqual("\"Farmhand+%2318\"", searcherFarm.SearchTermEncoded);
 
-            var searcherFarmLoose = new Searcher("Farmhand #18", false, false);
+            var searcherFarmLoose = Searcher.Create("Farmhand #18", false, false);
             string searchURLfarmLoose = @"https://www.amazon.com/s?k=Farmhand+%2318&i=comics-manga";
             Assert.AreEqual(searchURLfarmLoose, searcherFarmLoose.SearchURL);
             Assert.AreEqual("Farmhand #18", searcherFarmLoose.SearchTerm);
             Assert.AreEqual("Farmhand+%2318", searcherFarmLoose.SearchTermEncoded);
 
-            var searcherOne = new Searcher("one piece", true);
+            var searcherOne = Searcher.Create("one piece", true);
             string searchURLone = @"https://www.amazon.com/s?k=one+piece&i=comics-manga&s=date-desc-rank";
             Assert.AreEqual(searchURLone, searcherOne.SearchURL);
             Assert.AreEqual("one piece", searcherOne.SearchTerm);
@@ -33,8 +33,9 @@ namespace Tests
         [TestMethod]
         public void TestGetResults()
         {
-            var searcherFarm = new Searcher("Farmhand #16", false, true);
+            var searcherFarm = Searcher.Create("Farmhand #16", false, true);
             var res = searcherFarm.GetResults();
+			Assert.IsTrue(res.Count > 0);
             var linkFarm = res[0] as AmazonLinkIssues;
 
             Assert.IsNotNull(res);
@@ -56,7 +57,7 @@ namespace Tests
         [TestMethod]
         public void TestGetResultsSerie()
         {
-            var searcherFarm = new Searcher("Farmhand #16", false, true);
+            var searcherFarm = Searcher.Create("Farmhand #16", false, true);
             var res = Searcher.GroupResultsBySerie(searcherFarm.GetResults());
             var linkFarm = res[0] as AmazonLinkSerie;
 

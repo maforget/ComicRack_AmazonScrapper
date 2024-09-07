@@ -1,22 +1,24 @@
 ﻿using System.Drawing;
 using System.Text.RegularExpressions;
+using AmazonScrapper.Web;
 
 namespace AmazonScrapper.Data
 {
-    public abstract class AmazonLink
+	public abstract class AmazonLink: IDomain
     {
         protected string link;
 
-        public AmazonLink(string asin, string title, string link, string imageLink)
+        public AmazonLink(string asin, string title, string link, string imageLink, TLDs tld = TLDs.com)
         {
             Title = title;
             ASIN = asin;
             //this.link = Web.Utility.FixLink(link);
             ImageLink = imageLink;
+            TLD = tld;
         }
 
-        public AmazonLink(string title, string link, string imageLink)
-            : this(GetASINfromLink(link), title, link, imageLink)
+        public AmazonLink(string title, string link, string imageLink, TLDs tld = TLDs.com)
+            : this(GetASINfromLink(link), title, link, imageLink, tld)
         {
 
         }
@@ -28,10 +30,11 @@ namespace AmazonScrapper.Data
         }
 
         public virtual string Title { get; }
-        public string Link => $@"https://www.amazon.com/dp/{ASIN}";
+        public string Link => $@"https://www.amazon.{TLD}/dp/{ASIN}";
         public string ASIN { get; set; }
         public string ImageLink { get; }
-        public virtual string SerieDisplayText { get; }
+        public TLDs TLD { get; }
+		public virtual string SerieDisplayText { get; }
         //public Image Image => Web.Fetcher.GetImage(ImageLink);
 
         private static string GetASINfromLink(string link)

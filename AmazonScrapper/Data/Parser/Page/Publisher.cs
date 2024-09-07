@@ -19,7 +19,7 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var input = Node.SelectSingleNode(".//div[@id='detailBullets_feature_div']//span[contains(text(), 'Publisher')]/following::span")?.InnerText?.Trim().DecodeHTML();
+            var input = Node.SelectSingleNode($".//div[@id='detailBullets_feature_div']//span[contains(text(), '{GetPublisherText()}')]/following::span")?.InnerText?.Trim().DecodeHTML();
 
             if (string.IsNullOrEmpty(input))
                 return string.Empty;
@@ -27,5 +27,8 @@ namespace AmazonScrapper.Data.Parser.Page
             string publisher = Regex.Match(input, "[^(]+", RegexOptions.IgnoreCase).Value?.Trim();
             return publisher;
         }
+
+        protected virtual string GetPublisherText() => "Publisher";
+	}
     }
 }

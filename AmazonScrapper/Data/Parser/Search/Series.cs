@@ -24,18 +24,17 @@ namespace AmazonScrapper.Data.Parser.Search
         /// <param name="link">the AmazonLinkIssues</param>
         public override object Parse()
         {
-            var parser = new ParserManager<IParserSearch>(Node);
+			ParserManager<IParserSearch> parser = new ParserManager<IParserSearch>(Node, TLD);
             var asin = parser.Get<ASIN>().Result;//not needed because it's taken from the link
             var title = parser.Get<Title>().Result;
             var link = parser.Get<Link>().Result;
             var largeImage = parser.Get<Cover>().Result;
-            var amazon = new AmazonLinkIssues(title, link, largeImage);
+			var amazon = new AmazonLinkIssues(title, link, largeImage, TLD);
             amazon.ASIN = string.IsNullOrEmpty(amazon.ASIN) ? asin : amazon.ASIN;
 
-            //get series link
-            var serieLink = Node.SelectSingleNode(@".//div[@class='a-row']/a")?.Attributes["href"]?.Value?.Trim();
-            var serieText = Node.SelectSingleNode(@".//div[@class='a-row']/a/span")?.InnerText?.Trim().DecodeHTML();
-            var amazonSerieLink = new AmazonLinkSerie(serieText, serieLink, largeImage);
+			string serieLink = GetSeriesLink();
+			string serieText = GetSeriesText();
+			var amazonSerieLink = new AmazonLinkSerie(serieText, serieLink, largeImage, TLD);
             SerieInfo serieInfo = SerieInfo.Parse(serieText, title, amazonSerieLink);
 
             if (serieInfo != null)
@@ -43,5 +42,10 @@ namespace AmazonScrapper.Data.Parser.Search
 
             return amazon;
         }
+
+		protected virtual string GetSeriesText() => Node.SelectSingleNode(@".//div[@class='a-row']/a/span")?.InnerText?.Trim().DecodeHTML();
+
+		protected virtual string GetSeriesLink() => Node.SelectSingleNode(@".//div[@class='a-row']/a")?.Attributes["href"]?.Value?.Trim();
+	}
     }
 }

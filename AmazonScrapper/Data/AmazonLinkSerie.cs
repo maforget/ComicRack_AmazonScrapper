@@ -12,21 +12,21 @@ using AmazonScrapper.Data.Parser;
 
 namespace AmazonScrapper.Data
 {
-    public class AmazonLinkSerie : AmazonLink
+	public class AmazonLinkSerie : AmazonLink
     {
         const int maxSize = 500;
         public override string Title { get; }
         public override string SerieDisplayText { get; }
-        public string FullCollectionlURL => $@"https://www.amazon.com/kindle-dbs/productPage/ajax/seriesAsinList?asin={ASIN}&pageNumber=1&pageSize={maxSize}";
+        public string FullCollectionlURL => $@"https://www.amazon.{TLD}/kindle-dbs/productPage/ajax/seriesAsinList?asin={ASIN}&pageNumber=1&pageSize={maxSize}";
 
-        public AmazonLinkSerie(string asin)
-            : base(asin, string.Empty, string.Empty, string.Empty)
+        public AmazonLinkSerie(string asin, TLDs tld = TLDs.com)
+            : base(asin, string.Empty, string.Empty, string.Empty, tld)
         {
 
         }
 
-        public AmazonLinkSerie(string title, string link, string imageLink = "")
-            : base(title, link, imageLink)
+        public AmazonLinkSerie(string title, string link, string imageLink = "", TLDs tld = TLDs.com)
+            : base(title, link, imageLink, tld)
         {
             SerieInfo serieInfo = SerieInfo.Parse(title, amazonLinkSerie: this);
 
