@@ -130,7 +130,7 @@ namespace AmazonScrapper
                 var result = frmM.DialogResult;
                 var bookInfo = frmM.BookInfo;
 
-                if (!token.IsCancellationRequested && result == DialogResult.OK && bookInfo != null)
+				if (!token.IsCancellationRequested && result == DialogResult.OK && bookInfo != null)
                 {
                     var userConfig = Config.GetUserDictionary();
                     foreach (var c in userConfig)
@@ -143,9 +143,9 @@ namespace AmazonScrapper
                         //Set the Image for fileless
                         if (c.Value.Enabled && c.Key == "Cover" && string.IsNullOrEmpty(_CurrentBook.FilePath))
                             _ComicRackApp.SetCustomBookThumbnail(_CurrentBook, bookInfo.Cover);
-                        else if (c.Value.Enabled && value != null && !value.Equals(def) && c.Key != "Cover" & !c.Value.Append.Enabled)
+						else if (c.Value.Enabled && value != null && !value.Equals(def) && IsPermittedForFileless(c.Key) && !c.Value.Append.Enabled)
                             _CurrentBook.SetValue(c.Key, value);
-                        else if (c.Value.Enabled && value != null && !value.Equals(def) && c.Key != "Cover" & c.Value.Append.Enabled)
+                        else if (c.Value.Enabled && value != null && !value.Equals(def) && IsPermittedForFileless(c.Key) && c.Value.Append.Enabled)
                             _CurrentBook.AppendValue(c.Key, value, c.Value.Append.NewLine);
                     }
                 }
@@ -158,6 +158,26 @@ namespace AmazonScrapper
                 _CurrentBookIndex++;
                 ProcessBook();
             }
-        }
+
+			private bool IsPermittedForFileless(string key)
+			{
+				var filelessOnly = new string[] { "PageCount" };
+
+				if (key == "Cover")//Cover is always refused, because it has it's own separate command
+					return false;
+
+                if (filelessOnly.Contains(key))
+                {
+                    if (string.IsNullOrEmpty(_CurrentBook.FilePath))// Book is Fileless & key is permitted for fileless only
+                        return true;
+
+                    //This is a normal book, so it isn't permitted
+                    return false;
+                }
+
+                //This is for all other possible fields
+                return true;
+			}
+		}
     }
 }
