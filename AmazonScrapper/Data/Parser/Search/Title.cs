@@ -25,7 +25,7 @@ namespace AmazonScrapper.Data.Parser.Search
         /// <returns>the title</returns>
         public override object Parse()
         {
-            return Node.SelectSingleNode(@".//h2/a/span")?.InnerText?.Trim().DecodeHTML();
+            return Node.SelectSingleNode(@".//h2/span")?.InnerText?.Trim().DecodeHTML();
         }
     }
 }
