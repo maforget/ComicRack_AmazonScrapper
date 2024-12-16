@@ -39,9 +39,9 @@ namespace AmazonScrapper.Dialog
         public frmMain()
         {
             InitializeComponent();
-            SetConfigItems();
             SetTitleBar();
 			CreateDomainList();
+            SetConfigItems();
 		}
 
         public frmMain(string searchText, string searchNumber, CancellationToken token = default)
@@ -131,9 +131,10 @@ namespace AmazonScrapper.Dialog
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnBookSkipped(EventArgs.Empty);
-        }
+			SaveSetting();
+		}
 
-        private void btnIssues_Click(object sender, EventArgs e)
+		private void btnIssues_Click(object sender, EventArgs e)
         {
             AmazonLinkSerie link = GetCurrentRow() as AmazonLinkSerie;
             if (link != null)
@@ -170,15 +171,18 @@ namespace AmazonScrapper.Dialog
         }
 
         private void chkGroupBySerie_CheckedChanged(object sender, EventArgs e)
-        {
-            GroupBySerie = chkGroupBySerie.Checked;
+		{
+			GroupBySerie = chkGroupBySerie.Checked;
+			ChangeGrouping();
+		}
 
-            var user = new OtherConfig();
-            user.GroupBySerie = chkGroupBySerie.Checked;
-            user.WriteOtherConfigToFile();
-
-            ChangeGrouping();
-        }
+		private void SaveSetting()
+		{
+			var user = new OtherConfig();
+			user.GroupBySerie = chkGroupBySerie.Checked;
+            user.TLD = Domain;
+			user.WriteOtherConfigToFile();
+		}
 
 		private void cbDomains_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -271,6 +275,7 @@ namespace AmazonScrapper.Dialog
                 return;
 
             chkGroupBySerie.Checked = user.GroupBySerie;
+            cbDomains.SelectedIndex = (int)user.TLD;
         }
 
         private void SetTitleBar()
