@@ -30,6 +30,7 @@ namespace AmazonScrapper.Dialog
 		public bool GroupBySerie { get; private set; }
         public AmazonBookInfo BookInfo { get; private set; }
         public CancellationToken Token { get; }
+        bool IsSkipped = true;
 
         public event EventHandler BookChosen;
         public event EventHandler BookSkipped;
@@ -118,20 +119,22 @@ namespace AmazonScrapper.Dialog
             else
                 SetCurrentBookInfo();
 
-            this.Close();
+			this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             BookInfo = null;
-            this.Close();
-            OnBookSkipped(EventArgs.Empty);
-        }
+			this.Close();
+		}
 
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+		private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            OnBookSkipped(EventArgs.Empty);
+            if (IsSkipped)
+				OnBookSkipped(EventArgs.Empty);
+
 			SaveSetting();
+			IsSkipped = true; //Reset flag
 		}
 
 		private void btnIssues_Click(object sender, EventArgs e)
@@ -146,8 +149,9 @@ namespace AmazonScrapper.Dialog
                 {
                     BookInfo = frm.BookInfo;
                     this.DialogResult = DialogResult.OK;
+					IsSkipped = false;
                     OnBookChosen(EventArgs.Empty);
-                    this.Close();
+					this.Close();
                 }
             }
         }
@@ -212,7 +216,8 @@ namespace AmazonScrapper.Dialog
                 if (link != null)
                 {
                     BookInfo = GroupBySerie ? null : ((AmazonLinkIssues)link).ScrapeData(Token);
-                    OnBookChosen(EventArgs.Empty);
+					IsSkipped = false;
+					OnBookChosen(EventArgs.Empty);
                 }
             }
         }
