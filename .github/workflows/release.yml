@@ -21,6 +21,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Set version tag
+      run: |
+        git tag -f v${{ github.event.inputs.version }}
+        git push -f origin v${{ github.event.inputs.version }}
+
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1
 
