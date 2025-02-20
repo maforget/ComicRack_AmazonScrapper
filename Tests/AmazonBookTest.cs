@@ -279,8 +279,8 @@ namespace Tests
 			Assert.AreEqual(24, book.Day);
 			Assert.AreEqual(8, book.Month);
 			Assert.AreEqual(2018, book.Year);
-			//Assert.AreEqual("fr", book.LanguageISO); // Will not get, too much of a hassle to translate
-			Assert.AreEqual("LITTLE URBAN; Illustrated édition", book.Publisher);
+            Assert.AreEqual("fr", book.LanguageISO);
+            Assert.AreEqual("LITTLE URBAN; Illustrated édition", book.Publisher);
 		}
 
 		[TestMethod]
@@ -299,8 +299,8 @@ namespace Tests
 			Assert.AreEqual(5, book.Day);
 			Assert.AreEqual(7, book.Month);
 			Assert.AreEqual(2007, book.Year);
-			//Assert.AreEqual("fr", book.LanguageISO); // Will not get, too much of a hassle to translate
-			Assert.AreEqual("DARGAUD", book.Publisher);
+            Assert.AreEqual("fr", book.LanguageISO);
+            Assert.AreEqual("DARGAUD", book.Publisher);
 		}
 	}
 }
