@@ -25,7 +25,10 @@ namespace AmazonScrapper.Data.Parser.Page
             JobsCollection jobsCollection = new JobsCollection();
             HtmlNodeCollection authorslNodeCollection = Node.SelectNodes(".//span[contains(@class, 'author')]");
 
-            foreach (HtmlNode author in authorslNodeCollection)
+			if (authorslNodeCollection is null)
+				return jobsCollection;
+
+			foreach (HtmlNode author in authorslNodeCollection)
             {
                 string person1 = author.SelectSingleNode(".//a[contains(@class, 'contributorNameID')]")?.InnerText?.Trim().DecodeHTML();
                 string person2 = author.SelectSingleNode(".//a[@class='a-link-normal']")?.InnerText?.Trim().DecodeHTML();//Alternative for second billed
