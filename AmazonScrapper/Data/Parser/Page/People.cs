@@ -121,20 +121,28 @@ namespace AmazonScrapper.Data.Parser.Page
 			switch (job)
 			{
 				case "Auteur":
+				case "Author":
 					people = jobsCollection.Get<Writer>();
 					break;
+				case "Artist":
+				case "Penciller":
+				case "Illustrator":
+				case "Contributor":
 				case "Illustrations":
 				case "Dessins":
 				case "Avec la contribution de":
 					people = jobsCollection.Get<Penciller>();
 					break;
 				case "Couleurs":
+				case "Colorist":
 					people = jobsCollection.Get<Colorist>();
 					break;
 				case "Encreur":
+				case "Inker":
 					people = jobsCollection.Get<Inker>();
 					break;
 				case "Rédacteur":
+				case "Editor":
 					people = jobsCollection.Get<Editor>();
 					break;
 				default:
