@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace AmazonScrapper.Dialog
 {
-    public partial class frmIssue : Form
+    public partial class frmIssue : BaseForm
     {
         public AmazonLinkSerie Link { get; }
         public AmazonBookInfo BookInfo { get; private set; }

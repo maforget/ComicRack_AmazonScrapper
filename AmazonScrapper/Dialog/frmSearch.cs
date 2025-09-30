@@ -11,7 +11,7 @@ using AmazonScrapper.Web;
 
 namespace AmazonScrapper.Dialog
 {
-    public partial class frmSearch : Form
+    public partial class frmSearch : BaseForm
     {
         public string SearchText { get; set; }
         public bool SortByDate { get; set; }

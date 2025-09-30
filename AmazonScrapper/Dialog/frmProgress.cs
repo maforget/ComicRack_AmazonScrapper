@@ -13,7 +13,7 @@ using AmazonScrapper.Web;
 
 namespace AmazonScrapper.Dialog
 {
-    public partial class frmProgress : Form
+    public partial class frmProgress : BaseForm
     {
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         public CancellationToken Token { get => cancellationTokenSource.Token; }
