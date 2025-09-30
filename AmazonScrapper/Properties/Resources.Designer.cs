@@ -71,7 +71,7 @@ namespace AmazonScrapper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0aebc5b312124998288193478d25e868e4b08652
+        ///   Looks up a localized string similar to 9a202d2e050ba16f4ea73d3c2becd21e82da01c6
         ///.
         /// </summary>
         internal static string CurrentCommit {
@@ -81,9 +81,7 @@ namespace AmazonScrapper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  M .gitignore
-        /// M AmazonScrapper/AmazonScrapper.csproj
-        ///.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string isDirty {
             get {
@@ -92,7 +90,9 @@ namespace AmazonScrapper.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to nightly-2-gc01c7dd
+        ///   Looks up a localized string similar to 0df37a2a0fe12c7d8564251174d7fd9999f98884 refs/tags/nightly
+        ///fa2ebe8e8557db221d2c1a7088140e54f2cada97 refs/tags/v1.0.0
+        ///8d804d8db373a32601f43d8ac6ceebb15622f8d2 refs/tags/v1.1
         ///.
         /// </summary>
         internal static string Tags {
