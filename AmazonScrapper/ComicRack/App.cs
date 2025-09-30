@@ -8,32 +8,15 @@ using static AmazonScrapper.Plugin;
 
 namespace AmazonScrapper.ComicRack
 {
-    public class App
+    public class App : ObjectBase
     {
-        private object comicRackApp;
-        private Type comicRackType => comicRackApp.GetType();
-
         public App(object comicRackApp)
+            : base(comicRackApp)
         {
-            this.comicRackApp = comicRackApp;
         }
 
-        private object InvokeMethod(string Method, object[] param)
-        {
-            return comicRackType.GetMethod(Method).Invoke(comicRackApp, param);
-        }
+		public Bitmap GetComicThumbnail(Book currentBook, int page) => InvokeMethod("GetComicThumbnail", currentBook.Object, page) as Bitmap;
 
-        public Image GetComicThumbnail(Book currentBook, int page)
-        {
-            //Get the current book thumbnail
-            return InvokeMethod("GetComicThumbnail", new object[] { currentBook.book, page }) as Image;
-        }
-
-        public void SetCustomBookThumbnail(Book currentBook, Image page)
-        {
-            //Set the book cover thumbnail
-            if (page != null)
-                InvokeMethod("SetCustomBookThumbnail", new object[] { currentBook.book, page });
-        }
-    }
+		public void SetCustomBookThumbnail(Book currentBook, Image page) => InvokeMethod("SetCustomBookThumbnail", currentBook.Object, page);
+	}
 }

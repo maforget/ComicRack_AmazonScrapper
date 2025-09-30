@@ -124,7 +124,7 @@ public static class SimpleLogger
     private static void WriteFormattedLog(LogLevel level, string text, string callerMemberName)
     {
         //var config = Config.ReadUserFromFile();
-        //int maxLevel = -1;
+        int maxLevel = (int)LogLevel.INFO; // No config in this plugin for this option, so just hardcode it for now
         //if (Enum.TryParse(config.LogLevel, true, out LogLevel logLevel))
         //    maxLevel = (int) logLevel;
 
@@ -156,8 +156,8 @@ public static class SimpleLogger
                 break;
         }
 
-        //if ((int)level >= maxLevel)
-        WriteLine(pretext + ParseNewLine(text), true);
+        if ((int)level >= maxLevel)
+            WriteLine(pretext + ParseNewLine(text), true);
     }
 
     private static void DeleteLog()
@@ -181,7 +181,6 @@ public static class SimpleLogger
         return input;
     }
 
-    [System.Flags]
     public enum LogLevel
     {
         TRACE,
