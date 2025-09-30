@@ -17,7 +17,7 @@ using AmazonScrapper.Web.Searcher;
 
 namespace AmazonScrapper.Dialog
 {
-	public partial class frmMain : Form
+	public partial class frmMain : BaseForm
     {
         #region Properties
         private bool doSearchOnOpen = false;
