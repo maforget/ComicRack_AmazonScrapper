@@ -86,9 +86,7 @@
     <Compile Include="ComicRack\Book.cs" />
     <Compile Include="ComicRack\BookCollection.cs" />
     <Compile Include="ComicRack\ObjectBase.cs" />
-    <Compile Include="ComicRack\ThemeExtensions.cs" />
     <Compile Include="Data\BaseManager.cs" />
-    <Compile Include="ComicRack\ObjectBase.cs" />
     <Compile Include="Data\Parser\Page\BookPrice.cs" />
     <Compile Include="Data\Parser\Collection\Cover.cs" />
     <Compile Include="Data\Parser\Collection\Link.cs" />
