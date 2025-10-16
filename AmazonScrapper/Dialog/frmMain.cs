@@ -158,7 +158,8 @@ namespace AmazonScrapper.Dialog
         private void btnConfig_Click(object sender, EventArgs e)
         {
             frmConfig frm = new frmConfig();
-            frm.ShowDialog(this);
+			Plugin.Theme.ApplyTheme(frm); // We don't use BaseForm for frmConfig because it can be open separately and in that case it is themed via ComicRack.Theme 
+			frm.ShowDialog(this);
         }
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)

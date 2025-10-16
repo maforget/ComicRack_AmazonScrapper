@@ -11,7 +11,7 @@ using AmazonScrapper.Settings;
 
 namespace AmazonScrapper.Dialog
 {
-    public partial class frmConfig : BaseForm
+    public partial class frmConfig : Form
     {
         Fields user = null;
         Dictionary<string, UserConfig> dictionary = new Dictionary<string, UserConfig>();

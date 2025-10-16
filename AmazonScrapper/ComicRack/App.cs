@@ -15,6 +15,17 @@ namespace AmazonScrapper.ComicRack
         {
         }
 
+		public Version ProductVersion
+		{
+			get
+			{
+				if (Version.TryParse(GetValue<string>(), out Version version))
+					return version;
+
+				return new Version(0, 9, 0); // super old version for the compare
+			}
+		}
+
 		public Bitmap GetComicThumbnail(Book currentBook, int page) => InvokeMethod("GetComicThumbnail", currentBook.Object, page) as Bitmap;
 
 		public void SetCustomBookThumbnail(Book currentBook, Image page) => InvokeMethod("SetCustomBookThumbnail", currentBook.Object, page);

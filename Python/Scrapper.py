@@ -18,6 +18,7 @@ from cYo.Projects.ComicRack.Engine import *
 #@Hook   ConfigScript
 def Config():
 	frm = frmConfig()
+	ThemeMe(frm)
 	frm.ShowDialog()
 
 #@Name	Amazon Scrapper
@@ -27,7 +28,15 @@ def Config():
 #@Description	Scrapes info from Amazon (Formally Comixology)
 def Process(books):
 	try:
-		Plugin.Run(ComicRack.App, books)
+		if ComicRack.App.ProductVersion >= '0.9.182':
+			Plugin.Run(ComicRack.App, books, ComicRack.Theme)
+		else:
+			Plugin.Run(ComicRack.App, books)
 	except Exception as e:
 		print('Generic Exception: ', e)
 		return
+
+def ThemeMe(control):
+    if ComicRack.App.ProductVersion >= '0.9.182':
+            ComicRack.Theme.ApplyTheme(control)
+

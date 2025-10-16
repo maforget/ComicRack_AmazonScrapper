@@ -13,6 +13,7 @@ namespace AmazonScrapper.Dialog
 		protected override void OnHandleCreated(EventArgs e)
 		{
 			base.OnHandleCreated(e);
+			Plugin.Theme.ApplyTheme(this);
 		}
 	}
 }

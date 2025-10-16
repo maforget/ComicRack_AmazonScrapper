@@ -16,19 +16,22 @@ using AmazonScrapper.Web;
 
 namespace AmazonScrapper
 {
-    public class Plugin
+    public static class Plugin
     {
-        private static App _ComicRackApp;
-        private static BookCollection _Books;
+        public static App App { get; private set; }
+        private static Theme theme;
+        public static Theme Theme => theme = theme ?? new Theme(null);
+		private static BookCollection _Books;
         private static frmProgress _frmProgress;
         private static CurrentBook _CurrentBook;
 
-        public static void Run(object ComicRackApp, object[] books)
+        public static void Run(object comicRackApp, object[] books, object comicRackTheme = null)
         {
-            if (ComicRackApp == null || books?.Length <= 0)
+            if (comicRackApp == null || books?.Length <= 0)
                 return;
 
-            _ComicRackApp = new App(ComicRackApp);
+            App = new App(comicRackApp);
+            theme = new Theme(comicRackTheme);
             _Books = new BookCollection(books);
             _CurrentBook = new CurrentBook();
             _frmProgress = new frmProgress(_Books.Length);
@@ -50,7 +53,7 @@ namespace AmazonScrapper
 
         public static void ProcessBooks()
         {
-            if (_ComicRackApp == null && _Books?.Length <= 0)
+            if (App == null && _Books?.Length <= 0)
                 return;
 
             _CurrentBook.ProcessBook();
@@ -65,7 +68,7 @@ namespace AmazonScrapper
             {
                 try
                 {
-                    if (_ComicRackApp == null || _Books?.Length <= 0 || _CurrentBookIndex >= _Books?.Length)
+                    if (App == null || _Books?.Length <= 0 || _CurrentBookIndex >= _Books?.Length)
                     {
                         _frmProgress?.Close();
                         return;
@@ -89,7 +92,7 @@ namespace AmazonScrapper
                     number = string.IsNullOrEmpty(number) ? volume.ToString() : number;
 
                     //Get the current book thumbnail
-                    var currentImage = _ComicRackApp.GetComicThumbnail(_CurrentBook, 0);
+                    var currentImage = App.GetComicThumbnail(_CurrentBook, 0);
                     _frmProgress.UpdateBook(currentImage, serie, number);
 
                     var frmM = new frmMain(serie, number, token);
@@ -142,7 +145,7 @@ namespace AmazonScrapper
 
                         //Set the Image for fileless
                         if (c.Value.Enabled && c.Key == "Cover" && string.IsNullOrEmpty(_CurrentBook.FilePath))
-                            _ComicRackApp.SetCustomBookThumbnail(_CurrentBook, bookInfo.Cover);
+                            App.SetCustomBookThumbnail(_CurrentBook, bookInfo.Cover);
 						else if (c.Value.Enabled && value != null && !value.Equals(def) && IsPermittedForFileless(c.Key) && !c.Value.Append.Enabled)
                             _CurrentBook.SetValue(c.Key, value);
                         else if (c.Value.Enabled && value != null && !value.Equals(def) && IsPermittedForFileless(c.Key) && c.Value.Append.Enabled)
