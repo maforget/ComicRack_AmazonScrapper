@@ -9,6 +9,7 @@ using System.IO;
 using System.Web;
 using System.Drawing;
 using System.Threading;
+using AmazonScrapper.Tools;
 
 namespace AmazonScrapper.Web
 {
@@ -20,7 +21,7 @@ namespace AmazonScrapper.Web
         public Fetcher()
         {
             cookieContainer = new CookieContainer();
-            cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = $".amazon.{TLD}" }); // Always use English
+            cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = $".amazon.{TLD.GetDescription()}" }); // Always use English
 			userAgent = string.Empty;
         }
 
@@ -159,7 +160,7 @@ namespace AmazonScrapper.Web
                 case TLDs.com:
                     return @"https://www.amazon.com/kindle-dbs/comics-store/home";
                 default:
-                    return $@"https://www.amazon.{TLD}";
+                    return $@"https://www.amazon.{TLD.GetDescription()}";
             }
         }
 

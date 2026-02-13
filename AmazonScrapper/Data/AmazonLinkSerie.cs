@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AmazonScrapper.Data.Parser;
+using AmazonScrapper.Tools;
 
 namespace AmazonScrapper.Data
 {
@@ -17,7 +18,7 @@ namespace AmazonScrapper.Data
         const int maxSize = 500;
         public override string Title { get; }
         public override string SerieDisplayText { get; }
-        public string FullCollectionlURL => $@"https://www.amazon.{TLD}/kindle-dbs/productPage/ajax/seriesAsinList?asin={ASIN}&pageNumber=1&pageSize={maxSize}";
+        public string FullCollectionlURL => $@"https://www.amazon.{TLD.GetDescription()}/kindle-dbs/productPage/ajax/seriesAsinList?asin={ASIN}&pageNumber=1&pageSize={maxSize}";
 
         public AmazonLinkSerie(string asin, TLDs tld = TLDs.com)
             : base(asin, string.Empty, string.Empty, string.Empty, tld)

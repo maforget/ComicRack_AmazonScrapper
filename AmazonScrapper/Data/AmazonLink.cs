@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Text.RegularExpressions;
+using AmazonScrapper.Tools;
 using AmazonScrapper.Web;
 
 namespace AmazonScrapper.Data
@@ -31,7 +32,7 @@ namespace AmazonScrapper.Data
         }
 
         public virtual string Title { get; }
-        public string Link => $@"https://www.amazon.{TLD}/dp/{ASIN}";
+        public string Link => $@"https://www.amazon.{TLD.GetDescription()}/dp/{ASIN}";
         public string ASIN { get; set; }
         public string ImageLink { get; }
         public TLDs TLD { get; }

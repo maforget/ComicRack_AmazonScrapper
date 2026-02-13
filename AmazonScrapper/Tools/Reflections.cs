@@ -122,5 +122,16 @@ namespace AmazonScrapper.Tools
 				return null;
 			}
 		}
-	}
+
+        public static string GetEnumDescription(Type enumType, string name)
+        {
+            FieldInfo field = enumType.GetField(name);
+            DescriptionAttribute descriptionAttribute = field.GetCustomAttributes(typeof(DescriptionAttribute), inherit: false).Cast<DescriptionAttribute>().FirstOrDefault();
+            if (descriptionAttribute != null)
+            {
+                return descriptionAttribute.Description;
+            }
+            return name;
+        }
+    }
 }

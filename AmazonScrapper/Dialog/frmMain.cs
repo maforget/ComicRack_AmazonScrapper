@@ -294,7 +294,7 @@ namespace AmazonScrapper.Dialog
 		{
 			var domainList = new List<string>();
 			foreach (TLDs t in Enum.GetValues(typeof(TLDs)))
-				domainList.Add($"amazon.{t}");
+				domainList.Add($"amazon.{t.GetDescription()}");
 
 			cbDomains.Items.AddRange(domainList.ToArray());
 			cbDomains.SelectedIndex = 0;
