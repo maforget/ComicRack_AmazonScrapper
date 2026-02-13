@@ -9,6 +9,7 @@ using System.IO;
 using System.Web;
 using System.Drawing;
 using System.Threading;
+using System.Diagnostics;
 using AmazonScrapper.Tools;
 
 namespace AmazonScrapper.Web
@@ -22,7 +23,7 @@ namespace AmazonScrapper.Web
         {
             cookieContainer = new CookieContainer();
             cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = $".amazon.{TLD.GetDescription()}" }); // Always use English
-			userAgent = string.Empty;
+            userAgent = string.Empty;
         }
 
         static Fetcher _instance;
@@ -85,7 +86,7 @@ namespace AmazonScrapper.Web
                     return null;
 
                 var html = ReadURL(url, ct);
-                if (html.Contains("you're not a robot") || html.Contains("vous n'êtes pas un robot"))
+                if (html.Contains("you're not a robot") || html.Contains("vous n'êtes pas un robot") || html.Contains("To discuss automated access to Amazon"))
                 {
                     CaptchaDetected();
                     return null;
@@ -253,27 +254,28 @@ namespace AmazonScrapper.Web
                 var browserType = new string[] { "chrome", "edge", "firefox" };
                 lock (syncLock)
                 {
-                    //Amazon seems to block version older than 2 years
+                    //Amazon seems to block version older than 1 year
                     int currentVersion = CalculateCurrentMajorVersion();
-                    int version = rand.Next(currentVersion - 16, currentVersion + 3);
+                    int version = rand.Next(currentVersion - 6, currentVersion + 2);
                     string finalVersion = version.ToString();
-                    int patch = rand.Next(1264, 2535);
-                    int build = rand.Next(10, 80);
+                    int patch = version * 52;
+                    int build = rand.Next(10, 200);
                     string randomBroswer = browserType[rand.Next(browserType.Length)];
 
-                    var OS = new string[] { "Windows NT 10.0; Win64; x64", "Macintosh; Intel Mac OS X 13_2_1" };
+                    var OS = new string[] { "Windows NT 10.0; Win64; x64", "Macintosh; Intel Mac OS X 15_7_4" };
                     string OSsystem = OS[rand.Next(OS.Length)];
 
                     var UATemplate = new Dictionary<string, string>
                     {
                         { "chrome", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36" },
-                        { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.{patch}.{build}" },
+                        { "edge", $"Mozilla/5.0 ({OSsystem}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{finalVersion}.0.0.0 Safari/537.36 Edg/{version}.0.0.0" },
                         { "firefox", $"Mozilla/5.0 ({OSsystem}; rv:{finalVersion}.0) Gecko/20100101 Firefox/{finalVersion}.0" },
                     };
                     userAgent = UATemplate[randomBroswer];
                 }
 
                 SimpleLogger.Info(userAgent);
+                Debug.WriteLine(userAgent);
             }
 
             return userAgent;
@@ -282,8 +284,8 @@ namespace AmazonScrapper.Web
 		private int CalculateCurrentMajorVersion()
 		{
             //This is based on Firefox releases, Chrome version pretty much matches those of Firefox
-            DateTime baseDate = new DateTime(2023, 07, 04);
-            int baseVersion = 115;
+            DateTime baseDate = new DateTime(2025, 7, 22);
+            int baseVersion = 141;
             int numOfWeeksPerVersion = 4;
 
             TimeSpan timeElapsedSince = DateTime.Now.Subtract(baseDate);
@@ -292,5 +294,5 @@ namespace AmazonScrapper.Web
             int numOfVersionBumps = (int)Math.Round(weeksElapsed / numOfWeeksPerVersion);
             return baseVersion + numOfVersionBumps;
 		}
-	}
+    }
 }
