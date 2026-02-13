@@ -19,7 +19,7 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var input = Node.SelectSingleNode($".//div[@id='detailBullets_feature_div']//span[contains(text(), '{GetPublisherText()}')]/following::span")?.InnerText?.Trim().DecodeHTML();
+            var input = Node.SelectSingleNode($"//*[@id=\"rpi-attribute-book_details-publisher\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim().DecodeHTML();
 
             if (string.IsNullOrEmpty(input))
                 return string.Empty;
@@ -31,14 +31,14 @@ namespace AmazonScrapper.Data.Parser.Page
         protected virtual string GetPublisherText() => "Publisher";
 	}
 
-	public class Publisher_Fr : Publisher
-	{
-		public Publisher_Fr(HtmlNode node) : base(node)
-		{
-		}
+    public class Publisher_Fr : Publisher
+    {
+        public Publisher_Fr(HtmlNode node) : base(node)
+        {
+        }
 
-		public override TLDs TLD => TLDs.fr;
+        public override TLDs TLD => TLDs.fr;
 
         protected override string GetPublisherText() => "Éditeur";
-	}
+    }
 }
