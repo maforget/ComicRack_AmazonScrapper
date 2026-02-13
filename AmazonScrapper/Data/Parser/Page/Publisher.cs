@@ -28,17 +28,17 @@ namespace AmazonScrapper.Data.Parser.Page
             return publisher;
         }
 
-        protected virtual string GetPublisherText() => "Publisher";
+        //protected virtual string GetPublisherText() => "Publisher";
 	}
 
-    public class Publisher_Fr : Publisher
-    {
-        public Publisher_Fr(HtmlNode node) : base(node)
-        {
-        }
+    //public class Publisher_Fr : Publisher
+    //{
+    //    public Publisher_Fr(HtmlNode node) : base(node)
+    //    {
+    //    }
 
-        public override TLDs TLD => TLDs.fr;
+    //    public override TLDs TLD => TLDs.fr;
 
-        protected override string GetPublisherText() => "Éditeur";
-    }
+    //    protected override string GetPublisherText() => "Éditeur";
+    //}
 }

@@ -23,6 +23,7 @@ namespace AmazonScrapper.Web
             cookieContainer.Add(new Cookie("x-amz-captcha-1", string.Empty) { Domain = ".amazon.fr" });
             cookieContainer.Add(new Cookie("x-amz-captcha-2", string.Empty) { Domain = ".amazon.fr" });
 			cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.fr" });
+            cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = ".amazon.fr" });
 			cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
 			userAgent = string.Empty;
         }
