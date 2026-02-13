@@ -19,7 +19,7 @@ namespace Tests
             Assert.AreEqual(cb.Series, book.Series);
             Assert.AreEqual(cb.Number, book.Number);
             Assert.AreEqual(cb.Volume, book.Volume);
-            Assert.AreEqual(cb.Title, book.Get<string>("Title"));
+            Assert.AreEqual(cb.Title, book.GetValue<string>("Title"));
         }
 
         private static string GetComicBook(string file)

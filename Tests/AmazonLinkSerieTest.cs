@@ -56,7 +56,7 @@ namespace Tests
             Assert.IsNull(thirdIssue.SerieInfo.RawText);
             Assert.AreEqual("Usagi Yojimbo Saga", thirdIssue.SerieInfo.Serie);
             Assert.AreEqual("2", thirdIssue.SerieInfo.Number);
-            Assert.AreEqual(8, thirdIssue.SerieInfo.Count);
+            Assert.AreEqual(6, thirdIssue.SerieInfo.Count);
         }
 
         [TestMethod]
