@@ -19,7 +19,7 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var text = Node?.SelectSingleNode($".//div[@id='detailBullets_feature_div']//span[contains(text(), '{GetLanguageText()}')]/following::span")?.InnerText?.Trim();
+            var text = Node.SelectSingleNode($"//*[@id=\"rpi-attribute-language\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim().DecodeHTML();
 
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
