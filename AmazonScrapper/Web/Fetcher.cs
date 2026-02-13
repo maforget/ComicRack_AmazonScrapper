@@ -20,11 +20,7 @@ namespace AmazonScrapper.Web
         public Fetcher()
         {
             cookieContainer = new CookieContainer();
-            cookieContainer.Add(new Cookie("x-amz-captcha-1", string.Empty) { Domain = ".amazon.fr" });
-            cookieContainer.Add(new Cookie("x-amz-captcha-2", string.Empty) { Domain = ".amazon.fr" });
-			cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.fr" });
-            cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = ".amazon.fr" });
-			cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
+            cookieContainer.Add(new Cookie("lc_acbfr", "en_GB") { Domain = $".amazon.{TLD}" }); // Always use English
 			userAgent = string.Empty;
         }
 
@@ -36,6 +32,29 @@ namespace AmazonScrapper.Web
                 if (_instance == null)
                     _instance = new Fetcher();
                 return _instance;
+            }
+        }
+
+        private TLDs? _tld;
+        public TLDs TLD
+        {
+            get => _tld ?? TLDs.com;
+            set => _tld = value;
+        }
+
+        public void RegisterTLDs(TLDs tld)
+        {
+            TLD = tld;
+            switch (tld)
+            {
+                case TLDs.fr:
+                    cookieContainer.Add(new Cookie("x-amz-captcha-1", string.Empty) { Domain = ".amazon.fr" });
+                    cookieContainer.Add(new Cookie("x-amz-captcha-2", string.Empty) { Domain = ".amazon.fr" });
+                    cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.fr" });
+                    break;
+                case TLDs.com:
+                    cookieContainer.Add(new Cookie("i18n-prefs", "USD") { Domain = ".amazon.com" });
+                    break;
             }
         }
 
@@ -108,7 +127,7 @@ namespace AmazonScrapper.Web
                 Req.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
                 Req.Referer = url;
                 Req.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8";
-                Req.Referer = @"https://www.amazon.com/kindle-dbs/comics-store/home";
+                Req.Referer = GetReferer();
                 Req.Headers.Add("Accept-Language", "en-US,en;q=0.5");
                 Req.KeepAlive = true;
                 WebResponse webresponse = Req.GetResponse();
@@ -130,6 +149,17 @@ namespace AmazonScrapper.Web
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        private string GetReferer()
+        {
+            switch (TLD)
+            {
+                case TLDs.com:
+                    return @"https://www.amazon.com/kindle-dbs/comics-store/home";
+                default:
+                    return $@"https://www.amazon.{TLD}";
             }
         }
 

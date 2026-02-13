@@ -16,9 +16,10 @@ namespace AmazonScrapper.Data.Parser
 		public DomainManager(TLDs tld, params object[] parameters)
 			: base(tld, parameters)
 		{
-		}
+            Fetcher.Instance.RegisterTLDs(tld);
+        }
 
-		protected override bool HasSubclass(T x) => x.GetType().BaseType != typeof(object);
+        protected override bool HasSubclass(T x) => x.GetType().BaseType != typeof(object);
 
 		public T Get()
 		{

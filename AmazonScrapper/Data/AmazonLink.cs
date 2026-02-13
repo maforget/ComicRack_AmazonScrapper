@@ -15,6 +15,7 @@ namespace AmazonScrapper.Data
             //this.link = Web.Utility.FixLink(link);
             ImageLink = imageLink;
             TLD = tld;
+            Fetcher.Instance.RegisterTLDs(tld);
         }
 
         public AmazonLink(string title, string link, string imageLink, TLDs tld = TLDs.com)
