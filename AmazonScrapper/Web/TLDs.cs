@@ -20,5 +20,6 @@ namespace AmazonScrapper.Web
         com,
         fr,
         de,
+        es,
     }
 }

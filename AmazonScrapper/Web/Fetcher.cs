@@ -59,6 +59,10 @@ namespace AmazonScrapper.Web
                 case TLDs.de:
                     cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.de" });
                     break;
+                case TLDs.es:
+                    cookieContainer.Add(new Cookie("i18n-prefs", "EUR") { Domain = ".amazon.es" });
+                    break;
+
             }
         }
 
