@@ -107,50 +107,46 @@ namespace AmazonScrapper.Data.Parser.Page
         }
     }
 
-	//public class People_Fr : People
-	//{
-	//	public People_Fr(HtmlNode node) : base(node)
-	//	{
-	//	}
+	public class People_Br : People
+	{
+		public People_Br(HtmlNode node) : base(node)
+		{
+		}
 
-	//	public override TLDs TLD => TLDs.fr;
+		public override TLDs TLD => TLDs.br;
 
-	//	protected override IJob ParseJobs(JobsCollection jobsCollection, string job)
-	//	{
-	//		IJob people = null;
-	//		switch (job)
-	//		{
-	//			case "Auteur":
-	//			case "Author":
-	//				people = jobsCollection.Get<Writer>();
-	//				break;
-	//			case "Artist":
-	//			case "Penciller":
-	//			case "Illustrator":
-	//			case "Contributor":
-	//			case "Illustrations":
-	//			case "Dessins":
-	//			case "Avec la contribution de":
-	//				people = jobsCollection.Get<Penciller>();
-	//				break;
-	//			case "Couleurs":
-	//			case "Colorist":
-	//				people = jobsCollection.Get<Colorist>();
-	//				break;
-	//			case "Encreur":
-	//			case "Inker":
-	//				people = jobsCollection.Get<Inker>();
-	//				break;
-	//			case "Rédacteur":
-	//			case "Editor":
-	//				people = jobsCollection.Get<Editor>();
-	//				break;
-	//			default:
-	//				people = jobsCollection.Get<Writer>();
-	//				break;
-	//		}
+		protected override IJob ParseJobs(JobsCollection jobsCollection, string job)
+		{
+			IJob people = null;
+			switch (job)
+			{
+				case "Escritor":
+                case "Autor":
+					people = jobsCollection.Get<Writer>();
+					break;
+				case "Artista":
+				case "Desenhista":
+                case "Ilustrador":
+				case "Penciller":
+                case "Desenhos":
+				case "Contribuinte":
+					people = jobsCollection.Get<Penciller>();
+					break;
+				case "Colorista":
+					people = jobsCollection.Get<Colorist>();
+					break;
+				case "Pintor":
+					people = jobsCollection.Get<Inker>();
+					break;
+				case "Editora":
+					people = jobsCollection.Get<Editor>();
+					break;
+				default:
+					people = jobsCollection.Get<Writer>();
+					break;
+			}
 
-	//		return people;
-	//	}
-	//}
+			return people;
+		}
+	}
 }

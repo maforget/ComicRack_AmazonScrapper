@@ -39,19 +39,19 @@ namespace AmazonScrapper.Data.Parser.Page
 		}
 	}
 
-	//public class Language_Fr : Language
-	//{
-	//	public Language_Fr(HtmlNode node) : base(node)
-	//	{
-	//	}
+	public class Language_Br : Language
+	{
+		public Language_Br(HtmlNode node) : base(node)
+		{
+		}
 
-	//	public override TLDs TLD => TLDs.fr;
-	//	protected override string GetLanguageText() => "Langue";
+		public override TLDs TLD => TLDs.br;
+		protected override string GetLanguageText() => "Idioma";
 
-	//	override protected CultureInfo GetCulture(string text)
-	//	{
-	//		CultureInfo cultureInfo = base.GetCulture(text);
-	//		return cultureInfo ?? CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(r => string.Equals(r.NativeName, text, StringComparison.OrdinalIgnoreCase));
-	//	}
-	//}
+		override protected CultureInfo GetCulture(string text)
+		{
+			CultureInfo cultureInfo = base.GetCulture(text);
+			return cultureInfo ?? CultureInfo.GetCultures(CultureTypes.AllCultures).FirstOrDefault(r => string.Equals(r.NativeName, text, StringComparison.OrdinalIgnoreCase));
+		}
+	}
 }

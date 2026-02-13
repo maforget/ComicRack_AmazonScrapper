@@ -38,18 +38,18 @@ namespace AmazonScrapper.Data.Parser.Page
 		}
 	}
 
-	//public class Date_Fr : Date
-	//{
-	//	public Date_Fr(HtmlNode node) : base(node)
-	//	{
-	//	}
+	public class Date_Br : Date
+	{
+		public Date_Br(HtmlNode node) : base(node)
+		{
+		}
 
-	//	public override TLDs TLD => TLDs.fr;
+		public override TLDs TLD => TLDs.br;
 
-	//	protected override bool TryParseDate(string dateString, out DateTime date)
-	//	{
-	//		CultureInfo culture = new CultureInfo("fr-FR");
-	//		return DateTime.TryParse(dateString, culture, DateTimeStyles.None, out date);
-	//	}
-	//}
+		protected override bool TryParseDate(string dateString, out DateTime date)
+		{
+			CultureInfo culture = new CultureInfo("pt-BR");
+			return DateTime.TryParse(dateString, culture, DateTimeStyles.None, out date);
+		}
+	}
 }

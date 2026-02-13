@@ -21,5 +21,7 @@ namespace AmazonScrapper.Web
         fr,
         de,
         es,
+        [Description("com.br")]
+        br // Can't seem to be forced in English
     }
 }
