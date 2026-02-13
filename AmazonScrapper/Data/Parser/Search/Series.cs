@@ -56,4 +56,13 @@ namespace AmazonScrapper.Data.Parser.Search
 
 		public override TLDs TLD => TLDs.fr;
 	}
+
+    public class Series_De : Series
+    {
+        public Series_De(HtmlNode node) : base(node)
+        {
+        }
+
+        public override TLDs TLD => TLDs.de;
+    }
 }

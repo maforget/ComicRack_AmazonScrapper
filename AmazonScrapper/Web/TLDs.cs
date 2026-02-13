@@ -15,9 +15,10 @@ using System.Windows.Forms;
 
 namespace AmazonScrapper.Web
 {
-	public enum TLDs
-	{
-		com,
-		fr
-	}
+    public enum TLDs
+    {
+        com,
+        fr,
+        de,
+    }
 }
