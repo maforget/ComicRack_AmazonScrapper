@@ -18,7 +18,7 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var text = Node.SelectSingleNode(".//div[@id='detailBullets_feature_div']//span[contains(text(), 'Print length')]/following::span")?.InnerText?.Trim();
+            var text = Node.SelectSingleNode("//*[@id=\"rpi-attribute-book_details-ebook_pages\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim();
 
             if (string.IsNullOrEmpty(text))
                 return 0;
