@@ -18,7 +18,9 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var text = Node.SelectSingleNode("//*[@id=\"rpi-attribute-book_details-ebook_pages\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim();
+            var count1 = Node.SelectSingleNode("//*[@id=\"rpi-attribute-book_details-ebook_pages\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim();
+            var count2 = Node.SelectSingleNode("//*[@id=\"rpi-attribute-book_details-fiona_pages\"]//*[contains(@class, \"rpi-attribute-value\")]/span")?.InnerText?.Trim();
+            var text = string.IsNullOrEmpty(count1) ? count2 : count1;
 
             if (string.IsNullOrEmpty(text))
                 return 0;
