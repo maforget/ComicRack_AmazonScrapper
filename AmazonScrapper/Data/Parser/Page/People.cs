@@ -76,7 +76,10 @@ namespace AmazonScrapper.Data.Parser.Page
 				case "Letterer":
 					people = jobsCollection.Get<Letterer>();
 					break;
-				default:
+                case "Translator":
+                    people = jobsCollection.Get<Translator>();
+                    break;
+                default:
 					people = jobsCollection.Get<Writer>();
 					break;
 			}

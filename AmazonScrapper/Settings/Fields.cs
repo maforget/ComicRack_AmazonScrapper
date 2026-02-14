@@ -78,6 +78,8 @@ namespace AmazonScrapper.Settings
 
         [IniParam(Default = true)]
         public bool Editor { get; set; } = true;
+        [IniParam(Default = true)]
+        public bool Translator { get; set; } = true;
 
         [IniParam(Default = true)]
         public bool Web { get; set; } = true;

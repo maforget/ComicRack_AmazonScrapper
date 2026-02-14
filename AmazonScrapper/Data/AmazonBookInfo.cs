@@ -42,6 +42,7 @@ namespace AmazonScrapper.Data
         private string letterer = string.Empty;
         private string coverArtist = string.Empty;
         private string editor = string.Empty;
+        private string translator = string.Empty;
         private string publisher = string.Empty;
         private string imprint = string.Empty;
         private string genre = string.Empty;
@@ -108,6 +109,8 @@ namespace AmazonScrapper.Data
         public string CoverArtist => coverArtist;
         [DefaultValue("")]
         public string Editor => editor;
+        [DefaultValue("")]
+        public string Translator => translator;
         [DefaultValue("")]
         public string Publisher => publisher;
         [DefaultValue("")]
@@ -197,6 +200,7 @@ namespace AmazonScrapper.Data
             bookInfo.letterer = jobsCollection.Get<Letterer>().Result;
             bookInfo.coverArtist = jobsCollection.Get<CoverArtist>().Result;
             bookInfo.editor = jobsCollection.Get<Editor>().Result;
+            bookInfo.translator = jobsCollection.Get<Translator>().Result;
 
             var serieInfo = parser.Get<Series>().Result;
             bookInfo.series = serieInfo.Serie;
