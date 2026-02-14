@@ -126,4 +126,7 @@
   <data name="label.Text" xml:space="preserve">
     <value>Please choose one from the list below, or click 'Skip' to scrape the comic later. Double-Click to open the Amazon page in your browser. Click Group by Series, to see only the series, an Issues button will appear giving the opportunity to select an issue (only the first 20). When in Group series mode, the double-click will get you to the collection page.</value>
   </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>143, 17</value>
+  </metadata>
 </root>

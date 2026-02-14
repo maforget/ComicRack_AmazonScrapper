@@ -28,225 +28,250 @@
         /// </summary>
         private void InitializeComponent()
         {
-			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-			this.pbCover = new System.Windows.Forms.PictureBox();
-			this.dgvResults = new System.Windows.Forms.DataGridView();
-			this.aSINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.sourceResults = new System.Windows.Forms.BindingSource(this.components);
-			this.btnSearch = new System.Windows.Forms.Button();
-			this.btnOK = new System.Windows.Forms.Button();
-			this.btnCancel = new System.Windows.Forms.Button();
-			this.label = new System.Windows.Forms.Label();
-			this.btnIssues = new System.Windows.Forms.Button();
-			this.chkGroupBySerie = new System.Windows.Forms.CheckBox();
-			this.btnConfig = new System.Windows.Forms.Button();
-			this.lblDomains = new System.Windows.Forms.Label();
-			this.cbDomains = new System.Windows.Forms.ComboBox();
-			((System.ComponentModel.ISupportInitialize)(this.pbCover)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.sourceResults)).BeginInit();
-			this.SuspendLayout();
-			// 
-			// pbCover
-			// 
-			this.pbCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.pbCover.Location = new System.Drawing.Point(650, 58);
-			this.pbCover.Name = "pbCover";
-			this.pbCover.Size = new System.Drawing.Size(222, 342);
-			this.pbCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pbCover.TabIndex = 0;
-			this.pbCover.TabStop = false;
-			// 
-			// dgvResults
-			// 
-			this.dgvResults.AllowUserToAddRows = false;
-			this.dgvResults.AllowUserToDeleteRows = false;
-			this.dgvResults.AllowUserToOrderColumns = true;
-			this.dgvResults.AllowUserToResizeRows = false;
-			this.dgvResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            this.pbCover = new System.Windows.Forms.PictureBox();
+            this.dgvResults = new System.Windows.Forms.DataGridView();
+            this.aSINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sourceResults = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.label = new System.Windows.Forms.Label();
+            this.btnIssues = new System.Windows.Forms.Button();
+            this.chkGroupBySerie = new System.Windows.Forms.CheckBox();
+            this.btnConfig = new System.Windows.Forms.Button();
+            this.lblDomains = new System.Windows.Forms.Label();
+            this.cbDomains = new System.Windows.Forms.ComboBox();
+            this.txtASIN = new System.Windows.Forms.TextBox();
+            this.lblASIN = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCover)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sourceResults)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // pbCover
+            // 
+            this.pbCover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbCover.Location = new System.Drawing.Point(650, 58);
+            this.pbCover.Name = "pbCover";
+            this.pbCover.Size = new System.Drawing.Size(222, 342);
+            this.pbCover.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCover.TabIndex = 0;
+            this.pbCover.TabStop = false;
+            // 
+            // dgvResults
+            // 
+            this.dgvResults.AllowUserToAddRows = false;
+            this.dgvResults.AllowUserToDeleteRows = false;
+            this.dgvResults.AllowUserToOrderColumns = true;
+            this.dgvResults.AllowUserToResizeRows = false;
+            this.dgvResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.dgvResults.AutoGenerateColumns = false;
-			this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dgvResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvResults.AutoGenerateColumns = false;
+            this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.aSINDataGridViewTextBoxColumn,
             this.titleDataGridViewTextBoxColumn,
             this.Serie});
-			this.dgvResults.DataSource = this.sourceResults;
-			this.dgvResults.Location = new System.Drawing.Point(12, 58);
-			this.dgvResults.MultiSelect = false;
-			this.dgvResults.Name = "dgvResults";
-			this.dgvResults.ReadOnly = true;
-			this.dgvResults.RowHeadersVisible = false;
-			this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvResults.Size = new System.Drawing.Size(622, 543);
-			this.dgvResults.TabIndex = 1;
-			this.dgvResults.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResults_CellDoubleClick);
-			this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
-			// 
-			// aSINDataGridViewTextBoxColumn
-			// 
-			this.aSINDataGridViewTextBoxColumn.DataPropertyName = "ASIN";
-			this.aSINDataGridViewTextBoxColumn.FillWeight = 10F;
-			this.aSINDataGridViewTextBoxColumn.HeaderText = "ASIN";
-			this.aSINDataGridViewTextBoxColumn.Name = "aSINDataGridViewTextBoxColumn";
-			this.aSINDataGridViewTextBoxColumn.ReadOnly = true;
-			this.aSINDataGridViewTextBoxColumn.Width = 80;
-			// 
-			// titleDataGridViewTextBoxColumn
-			// 
-			this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-			this.titleDataGridViewTextBoxColumn.FillWeight = 80F;
-			this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-			this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-			this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-			// 
-			// Serie
-			// 
-			this.Serie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.Serie.DataPropertyName = "SerieDisplayText";
-			this.Serie.FillWeight = 60F;
-			this.Serie.HeaderText = "Serie";
-			this.Serie.Name = "Serie";
-			this.Serie.ReadOnly = true;
-			// 
-			// sourceResults
-			// 
-			this.sourceResults.DataSource = typeof(AmazonScrapper.Data.AmazonLink);
-			// 
-			// btnSearch
-			// 
-			this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnSearch.Location = new System.Drawing.Point(12, 614);
-			this.btnSearch.Name = "btnSearch";
-			this.btnSearch.Size = new System.Drawing.Size(75, 23);
-			this.btnSearch.TabIndex = 2;
-			this.btnSearch.Text = "Search";
-			this.btnSearch.UseVisualStyleBackColor = true;
-			this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-			// 
-			// btnOK
-			// 
-			this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this.btnOK.Location = new System.Drawing.Point(797, 614);
-			this.btnOK.Name = "btnOK";
-			this.btnOK.Size = new System.Drawing.Size(75, 23);
-			this.btnOK.TabIndex = 0;
-			this.btnOK.Text = "OK";
-			this.btnOK.UseVisualStyleBackColor = true;
-			this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-			// 
-			// btnCancel
-			// 
-			this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnCancel.Location = new System.Drawing.Point(716, 614);
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(75, 23);
-			this.btnCancel.TabIndex = 1;
-			this.btnCancel.Text = "Skip";
-			this.btnCancel.UseVisualStyleBackColor = true;
-			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-			// 
-			// label
-			// 
-			this.label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvResults.DataSource = this.sourceResults;
+            this.dgvResults.Location = new System.Drawing.Point(12, 58);
+            this.dgvResults.MultiSelect = false;
+            this.dgvResults.Name = "dgvResults";
+            this.dgvResults.ReadOnly = true;
+            this.dgvResults.RowHeadersVisible = false;
+            this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvResults.Size = new System.Drawing.Size(622, 543);
+            this.dgvResults.TabIndex = 1;
+            this.dgvResults.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResults_CellDoubleClick);
+            this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
+            // 
+            // aSINDataGridViewTextBoxColumn
+            // 
+            this.aSINDataGridViewTextBoxColumn.DataPropertyName = "ASIN";
+            this.aSINDataGridViewTextBoxColumn.FillWeight = 10F;
+            this.aSINDataGridViewTextBoxColumn.HeaderText = "ASIN";
+            this.aSINDataGridViewTextBoxColumn.Name = "aSINDataGridViewTextBoxColumn";
+            this.aSINDataGridViewTextBoxColumn.ReadOnly = true;
+            this.aSINDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.FillWeight = 80F;
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Serie
+            // 
+            this.Serie.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Serie.DataPropertyName = "SerieDisplayText";
+            this.Serie.FillWeight = 60F;
+            this.Serie.HeaderText = "Serie";
+            this.Serie.Name = "Serie";
+            this.Serie.ReadOnly = true;
+            // 
+            // sourceResults
+            // 
+            this.sourceResults.DataSource = typeof(AmazonScrapper.Data.AmazonLink);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSearch.Location = new System.Drawing.Point(12, 614);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(797, 614);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(716, 614);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Skip";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // label
+            // 
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.label.Location = new System.Drawing.Point(12, 9);
-			this.label.Name = "label";
-			this.label.Size = new System.Drawing.Size(860, 46);
-			this.label.TabIndex = 6;
-			this.label.Text = resources.GetString("label.Text");
-			// 
-			// btnIssues
-			// 
-			this.btnIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnIssues.Enabled = false;
-			this.btnIssues.Location = new System.Drawing.Point(174, 614);
-			this.btnIssues.Name = "btnIssues";
-			this.btnIssues.Size = new System.Drawing.Size(75, 23);
-			this.btnIssues.TabIndex = 4;
-			this.btnIssues.Text = "Issues";
-			this.btnIssues.UseVisualStyleBackColor = true;
-			this.btnIssues.Visible = false;
-			this.btnIssues.Click += new System.EventHandler(this.btnIssues_Click);
-			// 
-			// chkGroupBySerie
-			// 
-			this.chkGroupBySerie.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.chkGroupBySerie.AutoSize = true;
-			this.chkGroupBySerie.Location = new System.Drawing.Point(533, 618);
-			this.chkGroupBySerie.Name = "chkGroupBySerie";
-			this.chkGroupBySerie.Size = new System.Drawing.Size(101, 17);
-			this.chkGroupBySerie.TabIndex = 7;
-			this.chkGroupBySerie.Text = "Group by Series";
-			this.chkGroupBySerie.UseVisualStyleBackColor = true;
-			this.chkGroupBySerie.CheckedChanged += new System.EventHandler(this.chkGroupBySerie_CheckedChanged);
-			// 
-			// btnConfig
-			// 
-			this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnConfig.Location = new System.Drawing.Point(93, 614);
-			this.btnConfig.Name = "btnConfig";
-			this.btnConfig.Size = new System.Drawing.Size(75, 23);
-			this.btnConfig.TabIndex = 3;
-			this.btnConfig.Text = "Config";
-			this.btnConfig.UseVisualStyleBackColor = true;
-			this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-			// 
-			// lblDomains
-			// 
-			this.lblDomains.AutoSize = true;
-			this.lblDomains.Location = new System.Drawing.Point(310, 619);
-			this.lblDomains.Name = "lblDomains";
-			this.lblDomains.Size = new System.Drawing.Size(49, 13);
-			this.lblDomains.TabIndex = 9;
-			this.lblDomains.Text = "Domain: ";
-			// 
-			// cbDomains
-			// 
-			this.cbDomains.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbDomains.FormattingEnabled = true;
-			this.cbDomains.Location = new System.Drawing.Point(365, 616);
-			this.cbDomains.Name = "cbDomains";
-			this.cbDomains.Size = new System.Drawing.Size(99, 21);
-			this.cbDomains.TabIndex = 10;
-			this.cbDomains.SelectedIndexChanged += new System.EventHandler(this.cbDomains_SelectedIndexChanged);
-			// 
-			// frmMain
-			// 
-			this.AcceptButton = this.btnOK;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this.btnCancel;
-			this.ClientSize = new System.Drawing.Size(884, 644);
-			this.Controls.Add(this.lblDomains);
-			this.Controls.Add(this.cbDomains);
-			this.Controls.Add(this.btnConfig);
-			this.Controls.Add(this.chkGroupBySerie);
-			this.Controls.Add(this.label);
-			this.Controls.Add(this.btnIssues);
-			this.Controls.Add(this.btnCancel);
-			this.Controls.Add(this.btnOK);
-			this.Controls.Add(this.btnSearch);
-			this.Controls.Add(this.dgvResults);
-			this.Controls.Add(this.pbCover);
-			this.Icon = global::AmazonScrapper.Properties.Resources.amazon;
-			this.Name = "frmMain";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "Choose a Comic Book Issue";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
-			this.Shown += new System.EventHandler(this.frmMain_Shown);
-			((System.ComponentModel.ISupportInitialize)(this.pbCover)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.sourceResults)).EndInit();
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.label.Location = new System.Drawing.Point(12, 9);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(860, 46);
+            this.label.TabIndex = 6;
+            this.label.Text = resources.GetString("label.Text");
+            // 
+            // btnIssues
+            // 
+            this.btnIssues.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIssues.Enabled = false;
+            this.btnIssues.Location = new System.Drawing.Point(174, 614);
+            this.btnIssues.Name = "btnIssues";
+            this.btnIssues.Size = new System.Drawing.Size(75, 23);
+            this.btnIssues.TabIndex = 4;
+            this.btnIssues.Text = "Issues";
+            this.btnIssues.UseVisualStyleBackColor = true;
+            this.btnIssues.Visible = false;
+            this.btnIssues.Click += new System.EventHandler(this.btnIssues_Click);
+            // 
+            // chkGroupBySerie
+            // 
+            this.chkGroupBySerie.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkGroupBySerie.AutoSize = true;
+            this.chkGroupBySerie.Location = new System.Drawing.Point(533, 618);
+            this.chkGroupBySerie.Name = "chkGroupBySerie";
+            this.chkGroupBySerie.Size = new System.Drawing.Size(101, 17);
+            this.chkGroupBySerie.TabIndex = 7;
+            this.chkGroupBySerie.Text = "Group by Series";
+            this.chkGroupBySerie.UseVisualStyleBackColor = true;
+            this.chkGroupBySerie.CheckedChanged += new System.EventHandler(this.chkGroupBySerie_CheckedChanged);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConfig.Location = new System.Drawing.Point(93, 614);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnConfig.TabIndex = 3;
+            this.btnConfig.Text = "Config";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
+            // lblDomains
+            // 
+            this.lblDomains.AutoSize = true;
+            this.lblDomains.Location = new System.Drawing.Point(310, 619);
+            this.lblDomains.Name = "lblDomains";
+            this.lblDomains.Size = new System.Drawing.Size(49, 13);
+            this.lblDomains.TabIndex = 9;
+            this.lblDomains.Text = "Domain: ";
+            // 
+            // cbDomains
+            // 
+            this.cbDomains.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDomains.FormattingEnabled = true;
+            this.cbDomains.Location = new System.Drawing.Point(365, 616);
+            this.cbDomains.Name = "cbDomains";
+            this.cbDomains.Size = new System.Drawing.Size(99, 21);
+            this.cbDomains.TabIndex = 10;
+            this.cbDomains.SelectedIndexChanged += new System.EventHandler(this.cbDomains_SelectedIndexChanged);
+            // 
+            // txtASIN
+            // 
+            this.txtASIN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtASIN.Location = new System.Drawing.Point(763, 581);
+            this.txtASIN.Name = "txtASIN";
+            this.txtASIN.Size = new System.Drawing.Size(109, 20);
+            this.txtASIN.TabIndex = 11;
+            this.toolTip.SetToolTip(this.txtASIN, "Enter an ASIN to fetch that page directly upon pressing OK");
+            // 
+            // lblASIN
+            // 
+            this.lblASIN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblASIN.AutoSize = true;
+            this.lblASIN.Location = new System.Drawing.Point(719, 584);
+            this.lblASIN.Name = "lblASIN";
+            this.lblASIN.Size = new System.Drawing.Size(38, 13);
+            this.lblASIN.TabIndex = 12;
+            this.lblASIN.Text = "ASIN: ";
+            this.lblASIN.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // frmMain
+            // 
+            this.AcceptButton = this.btnOK;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(884, 644);
+            this.Controls.Add(this.lblASIN);
+            this.Controls.Add(this.txtASIN);
+            this.Controls.Add(this.lblDomains);
+            this.Controls.Add(this.cbDomains);
+            this.Controls.Add(this.btnConfig);
+            this.Controls.Add(this.chkGroupBySerie);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.btnIssues);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.dgvResults);
+            this.Controls.Add(this.pbCover);
+            this.Icon = global::AmazonScrapper.Properties.Resources.amazon;
+            this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Choose a Comic Book Issue";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCover)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sourceResults)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -267,6 +292,9 @@
         private System.Windows.Forms.Button btnConfig;
 		private System.Windows.Forms.Label lblDomains;
 		private System.Windows.Forms.ComboBox cbDomains;
-	}
+        private System.Windows.Forms.TextBox txtASIN;
+        private System.Windows.Forms.Label lblASIN;
+        private System.Windows.Forms.ToolTip toolTip;
+    }
 }
 

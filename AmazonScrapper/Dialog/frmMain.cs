@@ -30,6 +30,8 @@ namespace AmazonScrapper.Dialog
 		public bool GroupBySerie { get; private set; }
         public AmazonBookInfo BookInfo { get; private set; }
         public CancellationToken Token { get; }
+        public bool DirectASIN => txtASIN.Text.Trim().Length > 0;
+
         bool IsSkipped = true;
 
         public event EventHandler BookChosen;
@@ -114,7 +116,9 @@ namespace AmazonScrapper.Dialog
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (GroupBySerie)
+            if (DirectASIN)
+                SetDirectBookInfo(txtASIN.Text.Trim());
+            else if (GroupBySerie)
                 btnIssues_Click(sender, e);
             else
                 SetCurrentBookInfo();
@@ -219,6 +223,21 @@ namespace AmazonScrapper.Dialog
                     BookInfo = GroupBySerie ? null : ((AmazonLinkIssues)link).ScrapeData(Token);
 					IsSkipped = false;
 					OnBookChosen(EventArgs.Empty);
+                }
+            }
+        }
+
+        private void SetDirectBookInfo(string asin)
+        {
+            using (HourGlass hourGlass = new HourGlass(this))
+            {
+                BookInfo = null;
+                AmazonLink link = new AmazonLinkIssues(asin, tld: Domain);
+                if (link != null)
+                {
+                    BookInfo = ((AmazonLinkIssues)link).ScrapeData(Token);
+                    IsSkipped = false;
+                    OnBookChosen(EventArgs.Empty);
                 }
             }
         }
