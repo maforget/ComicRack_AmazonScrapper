@@ -1,4 +1,5 @@
-﻿using AmazonScrapper.Web;
+﻿using AmazonScrapper.Tools;
+using AmazonScrapper.Web;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace AmazonScrapper.Data.Parser.Page
 
         public override object Parse()
         {
-            var text = Node.SelectSingleNode(".//div[@data-feature-name='bookDescription']")?.InnerText.DecodeHTML();
+            var node = Node.SelectSingleNode(".//div[@data-feature-name='bookDescription']");
+            var text = node.GetTextWithLineBreaks();
 
             if (string.IsNullOrEmpty(text))
                 return string.Empty;
